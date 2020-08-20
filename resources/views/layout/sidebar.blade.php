@@ -98,7 +98,7 @@
 {{--            @endif--}}
 
             {{--            @if(user_can('list_contacts'))--}}
-            <li class="{{ in_array(Request::segment(2), ['campaigns', 'marketing', 'import'])?"active":"" }} treeview">
+            <li class="{{ in_array(Request::segment(2), ['campaigns', 'marketing'])?"active":"" }} treeview">
                 <a href="#">
                     <i class="fa fa-dollar"></i> <span>Campañas y Marketing</span>
                     <span class="pull-right-container">
@@ -112,10 +112,6 @@
 
                     <li class="{{ Request::segment(2) == "marketing"?"active":"" }}">
                         <a href="{{ url('/admin/marketing') }}"><i class="fa fa-mail-forward"></i> Marketing de Campañas</a>
-                    </li>
-
-                    <li class="{{ Request::segment(2) == "import"?"active":"" }}">
-                        <a href="{{ url('/admin/import') }}"><i class="fa fa-users"></i> Importar Cuentas</a>
                     </li>
                 </ul>
             </li>
