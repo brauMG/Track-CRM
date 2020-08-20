@@ -1,0 +1,54 @@
+.bg-black{
+    background-color: #086984;
+    z-index: 5;
+}
+
+.barText{
+    font-family: Segoe UI;
+    font-size: calc(1em + 1vw);
+    color: #ffffff !important;
+    text-align: center !important;
+    width:100%;
+}
+
+.login-forget{
+    color: #ffffff !important;
+}
+
+.restore{
+    width: 100%;
+}
+
+.btn-login{
+    width: 50%;
+}
+
+.btn-recovery{
+    width: 100%;
+}
+
+.login-card{
+    z-index: 5 !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    color: #ffffff !important;
+    border: 0px solid !important;
+}
+
+@font-face {
+    font-family:Monserrat;
+    src: url(fonts/montserrat/Montserrat-SemiBold.ttf);
+}
+
+.card-body label{
+    font-family: "Monserrat";
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.cols input{
+    font-family: "Segoe UI Semibold";
+    font-size: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border-color: black;
+}

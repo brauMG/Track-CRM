@@ -1,0 +1,12 @@
+.forward{
+    z-index: 5 !important;
+}
+
+.container-center{
+    padding-top: 10% !important;
+}
+
+.black-font {
+    color: black !important;
+    font-size: 15px !important;
+}
