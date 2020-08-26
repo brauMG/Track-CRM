@@ -27,7 +27,6 @@ class CreateDocumentTable extends Migration
             $table->integer('assigned_user_id')->unsigned()->nullable();
 
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('type')->references('id')->on('document_type')->onDelete('set null');
             $table->foreign('created_by_id')->references('id')->on('users');

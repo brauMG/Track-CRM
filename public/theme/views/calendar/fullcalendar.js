@@ -34,17 +34,17 @@ $(function () {
     // show or hide events based on category
     $(".bg-light-blue").on("click", function (e) {
 
-        $('.fc-event-container a.pending').toggle();
+        $('.fc-event-container a.Pendiente').toggle();
     });
 
     $(".bg-yellow").on("click", function (e) {
 
-        $('.fc-event-container a.in-progress').toggle();
+        $('.fc-event-container a.En-Progreso').toggle();
     });
 
     $(".bg-green").on("click", function (e) {
 
-        $('.fc-event-container a.finished').toggle();
+        $('.fc-event-container a.Finalizada').toggle();
     });
 
 });

@@ -29,7 +29,7 @@
 
                         <a href="{{ url('/admin/admins/' . $user->id . '/edit') }}" title="Edit user"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
 
-                        @if($user->company_id != 1)
+                        @if($user->company_id != 2)
                             <form method="POST" action="{{ url('admin/admins' . '/' . $user->id) }}" accept-charset="UTF-8" style="display:inline">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}

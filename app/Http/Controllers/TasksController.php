@@ -102,11 +102,6 @@ class TasksController extends Controller
 
         $requestData['created_by_id'] = Auth::user()->id;
 
-        if(empty($requestData['contact_type'])) {
-
-            $requestData['contact_id'] = null;
-        }
-
         if ($requestData['status'] == 3) {
             $requestData['complete_date'] = Carbon::now()->setTimezone('America/Los_Angeles');
             $task = Task::create($requestData);

@@ -116,6 +116,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/campaigns/seeLink/{id}', 'CampaignsController@seeLink')->name('seeLinkQuiz');
     Route::post('/campaigns/storeQuiz', 'CampaignsController@storeQuiz')->name('createQuiz');
 
+    //FOR REPORTS
+    Route::get('/prepareContacts', 'ContactsController@preparePdf')->name('FilterContactsPDF');
+    Route::post('/prepareContacts/PDF', 'ContactsController@exportPdf')->name('ContactsPDF');
+
+    Route::get('/prepareUsers', 'UsersController@preparePdf')->name('FilterUsersPDF');
+    Route::post('/prepareUsers/PDF', 'UsersController@exportPdf')->name('UsersPDF');
+
+    Route::get('/prepareInventory', 'InventoryController@preparePdf')->name('FilterInventoryPDF');
+    Route::post('/prepareInventory/PDF', 'InventoryController@exportPdf')->name('InventoryPDF');
+
+
     Route::get('/forbidden', function () {
         return view('pages.forbidden.forbidden_area');
     });

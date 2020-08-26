@@ -79,16 +79,10 @@
                                         <div class="col-md-10">
                                             <input type="text" name="emails[]" class="form-control" value="{{ $email->email }}" />
                                         </div>
-                                        @if($loop->iteration > 1)
-                                            <div class="col-md-2"> <a href="javascript:void(0)" onclick="$(this).parent().parent().remove();"><i class="fa fa-remove"></i></a></div>
-                                        @endif
                                     </div>
                                 @endforeach
                             @endif
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="javascript:void(0)" id="new_email" class="btn btn-warning btn-sm" title="añadir uno nuevo"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -109,16 +103,10 @@
                                         <div class="col-md-10">
                                             <input type="text" name="phones[]" class="form-control" value="{{ $phone->phone }}" />
                                         </div>
-                                        @if($loop->iteration > 1)
-                                            <div class="col-md-2"> <a href="javascript:void(0)" onclick="$(this).parent().parent().remove();"><i class="fa fa-remove"></i></a></div>
-                                        @endif
                                     </div>
                                 @endforeach
                             @endif
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="javascript:void(0)" id="new_phone" class="btn btn-warning btn-sm" title="add new phone"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -235,7 +223,6 @@
                     <option value="{{ $campaign->id }}">{{ $campaign->name }}</option>
                 @endif
             @endforeach
-                <option value="{{null}}">Sin Asignar</option>
         </select>
     </div>
 @endif
@@ -254,7 +241,10 @@
         <label for="assigned_user_id" class="control-label">{{ 'Usuario Asignado' }}</label>
         <select name="assigned_user_id" id="assigned_user_id" class="form-control">
             @foreach($users as $user)
+                @if($user->id == 2)
+                @else
                 <option value="{{ $user->id }}" {{ isset($contact->assigned_user_id) && $contact->assigned_user_id == $user->id?"selected":"" }}>{{ $user->name }}</option>
+                @endif
             @endforeach
         </select>
 

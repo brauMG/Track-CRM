@@ -21,9 +21,9 @@ class CompaniesController extends Controller
             $perPage = 25;
 
             if (!empty($keyword)) {
-                $query = Companies::where('name', 'like', "%$keyword%")->orWhere('email', 'like', "%$keyword%");
+                $query = Companies::where('id', '!=', 1)->where('name', 'like', "%$keyword%")->orWhere('email', 'like', "%$keyword%")->get();
             } else {
-                $query = Companies::latest();
+                $query = Companies::latest()->where('id', '!=', 1);
             }
 
             $companies = $query->paginate($perPage);

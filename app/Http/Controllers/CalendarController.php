@@ -36,10 +36,22 @@ class CalendarController extends Controller
     protected function getTaskStatusByDate()
     {
         $pending_tasks = Task::whereNotNull('start_date')->whereNotNull('end_date')->where('start_date', '>', date("m/d/Y"));
+        $pending_tasks->join('users',function ($join) {
+            $join->on('task.assigned_user_id', '=', 'users.id');
+        });
+        $pending_tasks->select('task.*', 'users.name as username');
 
         $tasks_in_progress = Task::whereNotNull('start_date')->whereNotNull('end_date')->where('start_date', '<=', date("m/d/Y"))->where('end_date', '>=', date("m/d/Y"));
+        $tasks_in_progress->join('users',function ($join) {
+            $join->on('task.assigned_user_id', '=', 'users.id');
+        });
+        $tasks_in_progress->select('task.*', 'users.name as username');
 
         $finished_tasks = Task::whereNotNull('start_date')->whereNotNull('end_date')->where('end_date', '<', date("m/d/Y"));
+        $finished_tasks->join('users',function ($join) {
+            $join->on('task.assigned_user_id', '=', 'users.id');
+        });
+        $finished_tasks->select('task.*', 'users.name as username');
 
 
         // if not admin user show tasks if assigned to or created by that user
@@ -72,46 +84,48 @@ class CalendarController extends Controller
 
         foreach ($pending_tasks as $task) {
 
-            $pending_events[] = ["title" => $task->name . " - pending",
+            $pending_events[] = ["title" => $task->name . " - Pendiente",
                 "start" => date("Y-m-d", strtotime($task->start_date)),
                 "end" => date("Y-m-d", strtotime($task->end_date)),
                 "backgroundColor" => "#3c8dbc",
                 "borderColor" => "#3c8dbc",
-                "className" => "pending",
-                "description" => "<strong>Title:</strong> " . $task->name . "<br/>" .
-                    "<strong>Start date:</strong> " . date("Y-m-d", strtotime($task->start_date)) . "<br/>" .
-                    "<strong>End date:</strong> " . date("Y-m-d", strtotime($task->end_date)) . "<br/>" .
-                    "<strong>Type:</strong> " . $task->type->name . "<br/>"
+                "className" => "Pendiente",
+                "description" => "<strong>Nombre:</strong> " . $task->name . "<br/>" .
+                    "<strong>Empieza:</strong> " . date("Y-m-d", strtotime($task->start_date)) . "<br/>" .
+                    "<strong>Termina:</strong> " . date("Y-m-d", strtotime($task->end_date)) . "<br/>" .
+                    "<strong>Tipo:</strong> " . $task->type->name . "<br/>" .
+                    "<strong>Usuario Asignado:</strong> " . $task->username . "<br/>"
             ];
         }
 
         foreach ($tasks_in_progress as $task) {
-
-            $in_progress_events[] = ["title" => $task->name . " - in progress",
+            $in_progress_events[] = ["title" => $task->name . " - En Progreso",
                 "start" => date("Y-m-d", strtotime($task->start_date)),
                 "end" => date("Y-m-d", strtotime($task->end_date)),
                 "backgroundColor" => "#f39c12",
                 "borderColor" => "#f39c12",
-                "className" => "in-progress",
-                "description" => "<strong>Title:</strong> " . $task->name . "<br/>" .
-                    "<strong>Start date:</strong> " . date("Y-m-d", strtotime($task->start_date)) . "<br/>" .
-                    "<strong>End date:</strong> " . date("Y-m-d", strtotime($task->end_date)) . "<br/>" .
-                    "<strong>Type:</strong> " . $task->type->name . "<br/>"
+                "className" => "En-Progreso",
+                "description" => "<strong>Nombre:</strong> " . $task->name . "<br/>" .
+                    "<strong>Empieza:</strong> " . date("Y-m-d", strtotime($task->start_date)) . "<br/>" .
+                    "<strong>Termina:</strong> " . date("Y-m-d", strtotime($task->end_date)) . "<br/>" .
+                    "<strong>Tipo:</strong> " . $task->type->name . "<br/>" .
+                    "<strong>Usuario Asignado:</strong> " . $task->username . "<br/>"
             ];
         }
 
         foreach ($finished_tasks as $task) {
 
-            $finished_events[] = ["title" => $task->name . " - finished",
+            $finished_events[] = ["title" => $task->name . " - Finalizada",
                 "start" => date("Y-m-d", strtotime($task->start_date)),
                 "end" => date("Y-m-d", strtotime($task->end_date)),
                 "backgroundColor" => "#00a65a",
                 "borderColor" => "#00a65a",
-                "className" => "finished",
-                "description" => "<strong>Title:</strong> " . $task->name . "<br/>" .
-                    "<strong>Start date:</strong> " . date("Y-m-d", strtotime($task->start_date)) . "<br/>" .
-                    "<strong>End date:</strong> " . date("Y-m-d", strtotime($task->end_date)) . "<br/>" .
-                    "<strong>Type:</strong> " . $task->type->name . "<br/>"
+                "className" => "Finalizada",
+                "description" => "<strong>Nombre:</strong> " . $task->name . "<br/>" .
+                    "<strong>Empieza:</strong> " . date("Y-m-d", strtotime($task->start_date)) . "<br/>" .
+                    "<strong>Termina:</strong> " . date("Y-m-d", strtotime($task->end_date)) . "<br/>" .
+                    "<strong>Tipo:</strong> " . $task->type->name . "<br/>" .
+                    "<strong>Usuario Asignado:</strong> " . $task->username . "<br/>"
             ];
         }
 

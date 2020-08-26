@@ -56,7 +56,7 @@ class AdminsController extends Controller
      */
     public function create()
     {
-        $companies = Companies::all();
+        $companies = Companies::where('id', '!=', 1)->get();
 
         return view('pages.admins.create', compact('companies'));
     }
@@ -134,7 +134,7 @@ class AdminsController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $companies = Companies::all();
+        $companies = Companies::where('id', '!=', 1);
 
         return view('pages.admins.edit', compact('user', 'companies'));
     }

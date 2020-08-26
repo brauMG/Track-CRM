@@ -37,7 +37,7 @@
     {!! $errors->first('image', '<p class="help-block">:message</p>') !!}
 </div>
 
-@if($user->company_id != 1)
+@if($user->company_id != 2)
     @if($formMode == 'edit')
         <div class="form-group {{ $errors->has('is_active') ? 'has-error' : ''}}">
             <label for="is_active" class="control-label">
@@ -49,7 +49,7 @@
     @endif
 @endif
 
-@if($user->company_id != 1)
+@if($user->company_id != 2)
     @if($formMode = 'edit')
     <div class="form-group {{ $errors->has('company_id') ? 'has-error' : ''}}">
         <label for="company_id" class="control-label">{{ 'Compañia' }}</label>

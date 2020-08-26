@@ -56,6 +56,12 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        DB::table('companies')->insert([
+            'name' => 'Sin Asignar',
+            'email' => 'Testing',
+            'is_active' => 1
+        ]);
+
         // insert sample user as the system admin
         DB::table('companies')->insert([
             'name' => 'CRM',
@@ -63,13 +69,14 @@ class DatabaseSeeder extends Seeder
             'is_active' => 1
         ]);
 
+
         // insert sample user as the system admin
         DB::table('users')->insert([
             'name' => 'Gamez',
             'email' => 'veyriko@gmail.com',
             'password' => Hash::make('asdasdasd'),
             'position_title' => 'Super Administrador',
-            'company_id' => 1,
+            'company_id' => 2,
             'is_admin' => 1,
             'is_super_admin' => 1,
             'is_active' => 1

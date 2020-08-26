@@ -195,6 +195,25 @@
                     </ul>
                 </li>
             @endif
+
+            <li class="{{ in_array(Request::segment(2), ['prepareUsers', 'prepareContacts', 'prepareInventory'])?"active":"" }} treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>Generar Reportes</span>
+                    <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::segment(2) == "prepareUsers"?"active":"" }}">
+                        <a href="{{ url('/admin/prepareUsers') }}"><i class="fa fa-user-o"></i> De Usuarios</a>
+                    <li class="{{ Request::segment(2) == "prepareContacts"?"active":"" }}">
+                        <a href="{{ url('/admin/prepareContacts') }}"><i class="fa fa-ban"></i> De Contactos</a>
+                    </li>
+                    <li class="{{ Request::segment(2) == "prepareInventory"?"active":"" }}">
+                        <a href="{{ url('/admin/prepareInventory') }}"><i class="fa fa-list"></i> De Inventario</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

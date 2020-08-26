@@ -12,6 +12,7 @@ use App\Models\ContactPhone;
 use App\Models\ContactStatus;
 use App\Models\Document;
 use App\User;
+use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,7 +82,6 @@ class ContactsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -92,6 +92,10 @@ class ContactsController extends Controller
         $today = Carbon::today();
 
         $campaigns = Campaigns::where('company_id', Auth::user()->company_id)->where('last_day', '>', $today)->get();
+
+        if (count($campaigns) == 0) {
+            return back()->with('danger', 'Para crear un contacto primero debes haber creado una campaña vigente');
+        }
 
         $selected_campaign = null;
 
@@ -142,6 +146,14 @@ class ContactsController extends Controller
         $phones = array_filter($phones, function ($value) {
             return !empty($value);
         });
+
+        if (count($phones) == 0){
+            $phones[] = 'sin asignar';
+        }
+
+        if (count($emails) == 0){
+            $emails[] = 'sin asignar';
+        }
 
         // insert emails & phones
         if($contact && $contact->id) {
@@ -237,6 +249,14 @@ class ContactsController extends Controller
             return !empty($value);
         });
 
+        if (count($phones) == 0){
+            $phones[] = 'sin asignar';
+        }
+
+        if (count($emails) == 0){
+            $emails[] = 'sin asignar';
+        }
+
         if(isset($requestData['documents'])) {
 
             $documents = $requestData['documents'];
@@ -323,8 +343,15 @@ class ContactsController extends Controller
     public function destroy($id)
     {
         $contact = Contact::find($id);
+        $contact_id = $contact->id;
+        $contact_phone = ContactPhone::where('id', $contact_id);
+        $contact_email = ContactEmail::where('id', $contact_id);
+        $contact_document = ContactDocument::where('id', $contact_id);
 
-        Contact::destroy($id);
+        $contact->delete();
+        $contact_phone->delete();
+        $contact_email->delete();
+        $contact_document->delete();
 
         if(getSetting("enable_email_notification") == 1) {
             $this->mailer->sendDeleteContactEmail("Contact deleted", User::find($contact->assigned_user_id), $contact);
@@ -372,7 +399,8 @@ class ContactsController extends Controller
     {
         $this->validate($request, [
             'first_name' => 'required',
-            'last_name' => 'required'
+            'last_name' => 'required',
+            'campaign' => 'required'
         ]);
     }
 
@@ -487,8 +515,8 @@ class ContactsController extends Controller
             return [];
 
 
-        $contacts = Contact::where('contact_status.name', $request->status)
-            ->join('contact_status', 'contact_status.id', '=', 'contact.status');
+        $contacts = Contact::where('contact.status', $request->status);
+
 
         if(Auth::user()->is_admin == 1) {
 
@@ -512,4 +540,64 @@ class ContactsController extends Controller
         return back()->with('flash_message', 'Importación de contactos realizada');
     }
 
+    public function preparePdf(Request $request) {
+//        $usuarios= User::where('company_id', Auth::user()->company_id)->where('is_super_admin', '!=', 1)->get();
+        $usuarios= User::where('company_id', Auth::user()->company_id)->get();
+        $campanias = Campaigns::where('company_id', Auth::user()->company_id)->get();
+        $estados = [
+            1,
+            2,
+            3,
+            4
+        ];
+        return view('pages.prepareContacts.index', compact('usuarios', 'campanias', 'estados'));
+    }
+
+    public function exportPdf(Request $request)
+    {
+        $desde = $request->input('desde');
+        $hasta = $request->input('hasta');
+        $usuarios = $request->input('asignados_a');
+        $campanias = $request->input('campanias');
+        $estados = $request->input('estados');
+
+        $contactos = DB::table('contact')
+            ->join('contact_status', 'contact.status', '=', 'contact_status.id')
+            ->where(function($query) use ($estados, $request) {
+                if ($estados != null) {
+                    $query->whereIn('contact.status', $estados);
+                }
+            })
+            ->join('users', 'contact.assigned_user_id', '=', 'users.id')
+            ->where(function($query) use ($usuarios, $request) {
+                if ($usuarios != null) {
+                    $query->whereIn('contact.assigned_user_id', $usuarios);
+                }
+            })
+            ->join('campaigns', 'contact.campaign_id', '=', 'campaigns.id')
+            ->where(function($query) use ($campanias, $request) {
+                if ($campanias != null) {
+                    $query->whereIn('contact.campaign_id', $campanias);
+                }
+            })
+            ->where(function($query) use ($desde, $request) {
+                if ($desde != null) {
+                    $query->whereDate('contact.created_at', '>=', $desde);
+                }
+            })
+            ->where(function($query) use ($hasta, $request) {
+                if ($hasta != null) {
+                    $query->whereDate('contact.created_at', '<=', $hasta);
+                }
+            })
+            ->join('contact_email', 'contact.id', '=', 'contact_email.contact_id')
+            ->join('contact_phone', 'contact.id', '=', 'contact_phone.contact_id')
+            ->select('contact.*', 'campaigns.name as campaign', 'users.name as user', 'contact_email.email as contactEmail', 'contact_phone.phone as contactPhone', 'contact_status.name as contactStatus')
+            ->get();
+
+
+        $pdf = PDF::loadView('pdf.contacts', compact('contactos'));
+
+        return $pdf->download('contactos.pdf');
+    }
 }

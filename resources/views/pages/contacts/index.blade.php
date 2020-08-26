@@ -14,6 +14,12 @@
         </ol>
     </section>
 
+    @if ( session('danger') )
+        <div class="container-edits" style="margin-top: 2%">
+            <div class="alert alert-danger" class='message' id='message'>{{ session('danger') }}</div>
+        </div>
+    @endif
+
     <section class="content">
         <div class="row">
             <div class="col-md-12">

@@ -30,7 +30,6 @@ class CreateTaskTable extends Migration
             $table->integer('assigned_user_id')->unsigned()->nullable();
 
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('status')->references('id')->on('task_status')->onDelete('set null');
             $table->foreign('type_id')->references('id')->on('task_type');

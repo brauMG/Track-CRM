@@ -13,17 +13,16 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        // insert sample user as the system admin
+//         insert sample user as the system admin
         DB::table('users')->insert([
             'name' => 'Braulio',
             'email' => 'bfmg.08@gmail.com',
             'password' => Hash::make('asdasdasd'),
             'position_title' => 'Super Administrador',
-            'company_id' => 1,
+            'company_id' => 2,
             'is_admin' => 0,
             'is_super_admin' => 1,
             'is_active' => 1
         ]);
-
     }
 }

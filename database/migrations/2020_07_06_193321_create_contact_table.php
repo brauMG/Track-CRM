@@ -41,7 +41,6 @@ class CreateContactTable extends Migration
             $table->integer('campaign_id')->unsigned()->nullable();
 
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('created_by_id')->references('id')->on('users');
             $table->foreign('modified_by_id')->references('id')->on('users')->onDelete('set null');
