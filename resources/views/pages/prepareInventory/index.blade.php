@@ -1,15 +1,15 @@
 @extends('layout.app')
 
-@section('title', ' | Generar Reporte de Contactos')
+@section('title', ' | Generar Reporte de Inventario')
 
 @section('content')
     <section class="content-header">
         <h1>
-            Reporte de Contactos
+            Reporte de Inventario
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li class="active">Generar Reporte de Contactos</li>
+            <li class="active">Generar Reporte de Inventario</li>
         </ol>
     </section>
     @if (session('danger') )
@@ -24,7 +24,7 @@
     @endif
 
     <section class="content">
-        <form method="POST" action="{{route('ContactsPDF')}}">
+        <form method="POST" action="{{route('InventoryPDF')}}">
             @csrf
             <section class="col-lg-12 connectedSortable ui-sortable">
                 <!-- TO DO List -->
@@ -38,7 +38,7 @@
 
                         <div class="box-body table-responsive" style="border: none">
 
-                            <div class="col-lg-4 col-xs-12">
+                            <div class="col-lg-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
@@ -56,74 +56,41 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-xs-12">
+                            <div class="col-lg-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-users"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Asignado a Usuarios</strong></a></i></div>
+                                            <div class="input-group-text"><i class="fa fa-dollar"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Precios</strong></a></i></div>
                                         </div>
-                                        <div class="form-group" style="justify-content: space-between;">
-                                            <div style="margin-top: 3%; height: 110px; width: 200px; overflow-y: scroll;"
-                                            @if(count($usuarios) == 0)
-                                                <a style="color: #c42623; font-size: 1.2em"><strong>No hay usuarios</strong></a>
-                                            @else
-                                                @foreach($usuarios as $usuario)
-                                                    @if($usuario->id == 2)
-                                                    @else
-                                                        <label style="display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></label>
-                                                        <input style="position: relative;top: 2px;" type="checkbox" name="asignados_a[]" value="{{$usuario->id}}"> {{$usuario->name}}
-                                                    @endif
-                                                @endforeach
-                                            @endif
+                                        <div class="form-group" style="padding-top: 1%">
+                                            <label for="creacion" style="margin-top: 1% !important;" class="label-mod">Desde: </label>
+                                            <input class="form-control date-mod" type="number" min="0" name="desdePrecio" style="background-color: white !important; color: black !important;">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="creacion" style="margin-top: 1% !important;" class="label-mod">Hasta: </label>
+                                            <input class="form-control date-mod" type="number" min="0" name="hastaPrecio" style="background-color: white !important; color: black !important;">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-4 col-xs-12">
-                            <div class="form-group">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-shopping-cart"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Campaña Perteneciente</strong></a></i></div>
-                                    </div>
-                                    <div class="form-group" style="justify-content: space-between;">
-                                        <div style="margin-top: 3%; height: 110px; width: 200px; overflow-y: scroll;"
-                                        @if(count($campanias) == 0)
-                                            <a style="color: #c42623; font-size: 1.2em"><strong>No hay campañas</strong></a>
-                                        @else
-                                            @foreach($campanias as $campania)
-                                                <label style="display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></label>
-                                                <input style="position: relative;top: 2px;" type="checkbox" name="campanias[]" value="{{$campania->id}}"> {{$campania->name}}
-                                            @endforeach
-                                        @endif
+                            <div class="col-lg-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-cubes"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>En Almacen</strong></a></i></div>
+                                        </div>
+                                        <div class="form-group" style="padding-top: 1%">
+                                            <label for="creacion" style="margin-top: 1% !important;" class="label-mod">Desde: </label>
+                                            <input class="form-control date-mod" type="number" min="0" name="desdeStock" style="background-color: white !important; color: black !important;">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="creacion" style="margin-top: 1% !important;" class="label-mod">Hasta: </label>
+                                            <input class="form-control date-mod" type="number" min="0" name="hastaStock" style="background-color: white !important; color: black !important;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-xs-12">
-                        <div class="form-group">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fa fa-bell"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Estados</strong></a></i></div>
-                                </div>
-                                <div class="form-group" style="justify-content: space-between;">
-                                    <div style="margin-top: 3%; height: 110px; width: 200px; overflow-y: scroll;">
-                                        <label style="display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></label>
-                                        <input style="position: relative;top: 2px;" type="checkbox" name="estados[]" value="{{$estados[0]}}"> Prospectos
-                                        <label style="display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></label>
-                                        <input style="position: relative;top: 2px;" type="checkbox" name="estados[]" value="{{$estados[1]}}"> Oportunidades
-                                        <label style="display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></label>
-                                        <input style="position: relative;top: 2px;" type="checkbox" name="estados[]" value="{{$estados[2]}}"> Clientes
-                                        <label style="display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></label>
-                                        <input style="position: relative;top: 2px;" type="checkbox" name="estados[]" value="{{$estados[3]}}"> Cerrados
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 

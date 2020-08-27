@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+
 
 class InventoryController extends Controller
 {
@@ -161,5 +164,58 @@ class InventoryController extends Controller
         Inventory::destroy($id);
 
         return redirect('admin/inventory')->with('flash_message', 'Artículo eliminado');
+    }
+
+    public function preparePdf(Request $request) {
+        return view('pages.prepareInventory.index');
+    }
+
+    public function exportPdf(Request $request)
+    {
+        $desde = $request->input('desde');
+        $hasta = $request->input('hasta');
+        $desdePrecio = $request->input('desdePrecio');
+        $hastaPrecio = $request->input('hastaPrecio');
+        $desdeStock = $request->input('desdeStock');
+        $hastaStock = $request->input('hastaStock');
+
+        $inventario = DB::table('inventory')
+            ->where(function($query) use ($desde, $request) {
+                if ($desde != null) {
+                    $query->whereDate('inventory.created_at', '>=', $desde);
+                }
+            })
+            ->where(function($query) use ($hasta, $request) {
+                if ($hasta != null) {
+                    $query->whereDate('inventory.created_at', '<=', $hasta);
+                }
+            })
+            ->where(function($query) use ($desdePrecio, $request) {
+                if ($desdePrecio != null) {
+                    $query->where('inventory.price', '>=', $desdePrecio);
+                }
+            })
+            ->where(function($query) use ($hastaPrecio, $request) {
+                if ($hastaPrecio != null) {
+                    $query->where('inventory.price', '<=', $hastaPrecio);
+                }
+            })
+            ->where(function($query) use ($desdeStock, $request) {
+                if ($desdeStock != null) {
+                    $query->where('inventory.stock', '>=', $desdeStock);
+                }
+            })
+            ->where(function($query) use ($hastaStock, $request) {
+                if ($hastaStock != null) {
+                    $query->where('inventory.stock', '<=', $hastaStock);
+                }
+            })
+            ->select('inventory.*')
+            ->get();
+
+
+        $pdf = PDF::loadView('pdf.inventory', compact('inventario'));
+
+        return $pdf->download('inventory.pdf');
     }
 }

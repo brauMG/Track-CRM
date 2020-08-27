@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\MailerFactory;
+use App\Models\Contact;
 use App\Models\ContactStatus;
 use App\Models\Document;
 use App\Models\Task;
@@ -13,6 +14,9 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PDF;
+
 
 class TasksController extends Controller
 {
@@ -423,5 +427,87 @@ class TasksController extends Controller
         $selected_documents = $task->documents()->pluck('document_id')->toArray();
 
         return [$users, $statuses, $task_types, $contact_statuses, $documents, $task, $selected_documents];
+    }
+
+    public function preparePdf(Request $request) {
+        $contacts = Contact::where('company_id', Auth::user()->company_id)->get();
+        $users = User::where('company_id', Auth::user()->company_id)->get();
+        $status = TaskStatus::all();
+        $type = TaskType::all();
+        $contact_type = ContactStatus::all();
+        $priority = [
+            'Baja',
+            'Normal',
+            'Alta',
+            'Urgente'
+        ];
+        return view('pages.prepareTasks.index', compact('contacts', 'users', 'status', 'type', 'contact_type', 'priority'));
+    }
+
+    public function exportPdf(Request $request)
+    {
+        $desde = $request->input('desde');
+        $hasta = $request->input('hasta');
+        $usuarios_asignados = $request->input('asignadas_a');
+        $estados = $request->input('estados');
+        $tipos = $request->input('tipos');
+        $contactos = $request->input('contactos');
+        $contactos_estados = $request->input('contactos_estados');
+        $prioridad = $request->input('prioridad');
+
+
+        $tareas = DB::table('task')
+            ->join('task_status', 'task.status', '=', 'task_status.id')
+            ->where(function($query) use ($estados, $request) {
+                if ($estados != null) {
+                    $query->whereIn('task.status', $estados);
+                }
+            })
+            ->join('task_type', 'task.type_id', '=', 'task_type.id')
+            ->where(function($query) use ($tipos, $request) {
+                if ($tipos != null) {
+                    $query->whereIn('task.type_id', $tipos);
+                }
+            })
+            ->join('contact', 'task.contact_id', '=', 'contact.id')
+            ->where(function($query) use ($contactos, $request) {
+                if ($contactos != null) {
+                    $query->whereIn('task.contact_id', $contactos);
+                }
+            })
+            ->join('contact_status', 'task.contact_type', '=', 'contact_status.id')
+            ->where(function($query) use ($contactos_estados, $request) {
+                if ($contactos_estados != null) {
+                    $query->whereIn('task.contact_type', $contactos_estados);
+                }
+            })
+            ->join('users', 'task.assigned_user_id', '=', 'users.id')
+            ->where(function($query) use ($usuarios_asignados, $request) {
+                if ($usuarios_asignados != null) {
+                    $query->whereIn('task.assigned_user_id', $usuarios_asignados);
+                }
+            })
+            ->where(function($query) use ($desde, $request) {
+                if ($desde != null) {
+                    $query->whereDate('task.created_at', '>=', $desde);
+                }
+            })
+            ->where(function($query) use ($hasta, $request) {
+                if ($hasta != null) {
+                    $query->whereDate('task.created_at', '<=', $hasta);
+                }
+            })
+            ->where(function($query) use ($prioridad, $request) {
+                if ($prioridad != null) {
+                    $query->whereIn('task.priority', '<=', $prioridad);
+                }
+            })
+            ->select('task.*', 'task_status.name as task_status', 'task_type.name as task_type', 'contact.*', 'contact_status.name as contact_status', 'users.name as user')
+            ->get();
+
+
+        $pdf = PDF::loadView('pdf.tasks', compact('tareas'));
+
+        return $pdf->download('tareas.pdf');
     }
 }

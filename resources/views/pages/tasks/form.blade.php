@@ -55,7 +55,7 @@
                         <div class="form-group {{ $errors->has('priority') ? 'has-error' : ''}}">
                             <label for="priority" class="control-label">{{ 'Prioridad' }}</label>
                             <select class="form-control" name="priority" id="priority" required>
-                                @foreach(array('Low', 'Normal', 'High', 'Urgent') as $value)
+                                @foreach(array('Baja', 'Normal', 'Alta', 'Urgente') as $value)
                                     <option value="{{ $value }}" {{ isset($task->priority) && $task->priority == $value ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach
                             </select>

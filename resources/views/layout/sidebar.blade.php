@@ -98,7 +98,7 @@
 {{--            @endif--}}
 
             {{--            @if(user_can('list_contacts'))--}}
-            <li class="{{ in_array(Request::segment(2), ['campaigns', 'marketing'])?"active":"" }} treeview">
+            <li class="{{ in_array(Request::segment(2), ['campaigns', 'marketing', 'promos'])?"active":"" }} treeview">
                 <a href="#">
                     <i class="fa fa-dollar"></i> <span>Campañas y Marketing</span>
                     <span class="pull-right-container">
@@ -112,6 +112,10 @@
 
                     <li class="{{ Request::segment(2) == "marketing"?"active":"" }}">
                         <a href="{{ url('/admin/marketing') }}"><i class="fa fa-mail-forward"></i> Marketing de Campañas</a>
+                    </li>
+
+                    <li class="{{ Request::segment(2) == "promos"?"active":"" }}">
+                        <a href="{{ url('/admin/promos') }}"><i class="fa fa-mail-reply-all"></i> Marketing de Promociones</a>
                     </li>
                 </ul>
             </li>
@@ -196,7 +200,7 @@
                 </li>
             @endif
 
-            <li class="{{ in_array(Request::segment(2), ['prepareUsers', 'prepareContacts', 'prepareInventory'])?"active":"" }} treeview">
+            <li class="{{ in_array(Request::segment(2), ['prepareTasks', 'prepareContacts', 'prepareInventory'])?"active":"" }} treeview">
                 <a href="#">
                     <i class="fa fa-users"></i> <span>Generar Reportes</span>
                     <span class="pull-right-container">
@@ -204,8 +208,8 @@
                         </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::segment(2) == "prepareUsers"?"active":"" }}">
-                        <a href="{{ url('/admin/prepareUsers') }}"><i class="fa fa-user-o"></i> De Usuarios</a>
+                    <li class="{{ Request::segment(2) == "prepareTasks"?"active":"" }}">
+                        <a href="{{ url('/admin/prepareTasks') }}"><i class="fa fa-user-o"></i> De Tareas</a>
                     <li class="{{ Request::segment(2) == "prepareContacts"?"active":"" }}">
                         <a href="{{ url('/admin/prepareContacts') }}"><i class="fa fa-ban"></i> De Contactos</a>
                     </li>

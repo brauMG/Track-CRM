@@ -184,10 +184,10 @@ class MailboxController extends Controller
 
             $this->mailer->sendMailboxEmail($mailbox);
 
-            return redirect('admin/mailbox/Sent')->with('flash_message', 'Mensaje enviado');
+            return redirect('admin/mailbox/Enviados')->with('flash_message', 'Mensaje enviado');
         }
 
-        return redirect('admin/mailbox/Drafts')->with('flash_message', 'Mensaje archivado');
+        return redirect('admin/mailbox/Borradores')->with('flash_message', 'Mensaje archivado');
     }
 
 
@@ -426,7 +426,7 @@ class MailboxController extends Controller
         // send email
         $this->mailer->sendMailboxEmail($mailbox);
 
-        return redirect('admin/mailbox/Sent')->with('flash_message', 'Mensaje enviado');
+        return redirect('admin/mailbox/Enviados')->with('flash_message', 'Mensaje enviado');
     }
 
 
@@ -504,7 +504,7 @@ class MailboxController extends Controller
         // send email
         $this->mailer->sendMailboxEmail($mailbox);
 
-        return redirect('admin/mailbox/Sent')->with('flash_message', 'Mensaje enviado');
+        return redirect('admin/mailbox/Enviados')->with('flash_message', 'Mensaje enviado');
     }
 
     /**
@@ -536,7 +536,7 @@ class MailboxController extends Controller
         }
 
         if(count($check) > 0) {
-            throw new \Exception("One or more files contain invalid extensions: ". implode(",", $check));
+            throw new \Exception("Uno o mas archivos tienen extensiones incorrectas: ". implode(",", $check));
         }
     }
 

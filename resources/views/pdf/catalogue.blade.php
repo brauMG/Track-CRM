@@ -2,7 +2,6 @@
     <table class="table table-bordered">
         <thead class="table-header" style="font-size: 0.5em !important; background-color: #c6e2f5 !important; color: black !important; vertical-align: middle !important;">
         <tr>
-            <th scope="col" style="text-transform: uppercase">Identificador</th>
             <th scope="col" style="text-transform: uppercase">Nombre</th>
             <th scope="col" style="text-transform: uppercase">Descripcion</th>
             <th scope="col" style="text-transform: uppercase">Precio</th>
