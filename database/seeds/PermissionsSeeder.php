@@ -5,18 +5,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 
-class ExtraPermissionsSeeder extends Seeder
+class PermissionsSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        // insert the initial permissions
         $permissions = [];
-        foreach (config('seed_data.permissions') as $value) {
+        foreach (config('permissions_seed_data.permissions') as $value) {
             $permissions[] = Permission::create(['name' => $value]);
         }
     }
