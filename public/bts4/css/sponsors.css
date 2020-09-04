@@ -392,32 +392,6 @@
     height: 4.3% !important;
 }
 
-/*@media screen and (max-width: 1680px){*/
-/*    .sponsors-navbar-inside {*/
-/*        background-color: #FFFFFF;*/
-/*        overflow: hidden;*/
-/*        position: fixed;*/
-/*        z-index: 1000;*/
-/*        bottom: 0;*/
-/*        margin-left: 12% !important;*/
-/*        width: 88% !important;*/
-/*        height: 4.7% !important;*/
-/*    }*/
-/*}*/
-
-/*@media screen and (max-width: 1148px){*/
-/*    .sponsors-navbar-inside {*/
-/*        background-color: #FFFFFF;*/
-/*        overflow: hidden;*/
-/*        position: fixed;*/
-/*        z-index: 1000;*/
-/*        bottom: 0;*/
-/*        margin-left: 0% !important;*/
-/*        width: 100% !important;*/
-/*        height: 4.7% !important;*/
-/*    }*/
-/*}*/
-
 .sponsors-ul-inside {
     position: fixed;
     width: 100%;
