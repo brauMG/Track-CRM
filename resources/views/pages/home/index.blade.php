@@ -16,7 +16,7 @@
         </ol>
     </section>
 
-    <section class="content">
+    <section class="content with-sponsor">
 
     @if(\Auth::user()->is_admin == 1)
         <!-- Small boxes (Stat box) -->

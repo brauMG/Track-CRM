@@ -18,7 +18,7 @@
         </ol>
     </section>
 
-    <section class="content">
+    <section class="content with-sponsor">
         <div class="row">
 
             @include('includes.flash_message')

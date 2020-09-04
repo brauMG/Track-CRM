@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use const http\Client\Curl\AUTH_ANY;
+use PDF;
 
 class CampaignsController extends Controller
 {
@@ -267,6 +268,13 @@ class CampaignsController extends Controller
 
         $contact = Contact::create($requestData);
 
+        $reached = Contact::where('campaign_id', $request->campaign_id)->get();
+        $reached = count($reached);
+
+        Campaigns::where('id', $request->campaign_id)->update([
+            'contacts_reached' => $reached
+        ]);
+
         $contact_id = $contact->id;
 
         ContactEmail::create([
@@ -297,5 +305,57 @@ class CampaignsController extends Controller
 
     public function thanks(){
         return view('pages.campaigns.thanks');
+    }
+
+    public function preparePdf(Request $request) {
+        return view('pages.prepareCampaigns.index');
+    }
+
+    public function exportPdf(Request $request)
+    {
+        $creada = $request->input('creada');
+        $vence = $request->input('vence');
+        $contactos_desde = $request->input('contactos_desde');
+        $contactos_hasta = $request->input('contactos_hasta');
+        $inversion_desde = $request->input('inversion_desde');
+        $inversion_hasta = $request->input('inversion_hasta');
+
+        $campanias = DB::table('campaigns')
+            ->where(function($query) use ($creada, $request) {
+                if ($creada != null) {
+                    $query->whereDate('campaigns.created_at', '>=', $creada);
+                }
+            })
+            ->where(function($query) use ($vence, $request) {
+                if ($vence != null) {
+                    $query->whereDate('campaigns.last_day', '<=', $vence);
+                }
+            })
+            ->where(function($query) use ($contactos_desde, $request) {
+                if ($contactos_desde != null) {
+                    $query->where('campaigns.contacts_reached', '>=', $contactos_desde);
+                }
+            })
+            ->where(function($query) use ($contactos_hasta, $request) {
+                if ($contactos_hasta != null) {
+                    $query->where('campaigns.contacts_reached', '<=', $contactos_hasta);
+                }
+            })
+            ->where(function($query) use ($inversion_desde, $request) {
+                if ($inversion_desde != null) {
+                    $query->where('campaigns.investment', '>=', $inversion_desde);
+                }
+            })
+            ->where(function($query) use ($inversion_hasta, $request) {
+                if ($inversion_hasta != null) {
+                    $query->where('campaigns.investment', '<=', $inversion_hasta);
+                }
+            })
+            ->where('campaigns.company_id', Auth::user()->company_id)
+            ->get();
+
+        $pdf = PDF::loadView('pdf.campaigns', compact('campanias'));
+
+        return $pdf->download('campañas.pdf');
     }
 }

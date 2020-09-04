@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('/inventory', 'InventoryController');
 
+    Route::resource('/sponsors', 'SponsorsController');
+
     Route::resource('/catalogue', 'CatalogueController');
 
     Route::resource('/quotation', 'QuotationController');
@@ -78,6 +80,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::put('/contacts/{id}/assign', 'ContactsController@postAssignContact');
 
+    Route::get('/contacts/ChangeStatus/{id}','ContactsController@editStatus')->name('ChangeStatusContact');
+    Route::put('/contacts/UpdateStatus/{id}','ContactsController@updateStatus')->name('UpdateStatusContact');
+
     Route::get('/api/contacts/get-contacts-by-status', 'ContactsController@getContactsByStatus');
 
     Route::post('/contacts/import', 'ContactsController@import');
@@ -123,6 +128,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     //FOR REPORTS
     Route::get('/prepareContacts', 'ContactsController@preparePdf')->name('FilterContactsPDF');
     Route::post('/prepareContacts/PDF', 'ContactsController@exportPdf')->name('ContactsPDF');
+
+    Route::get('/prepareCampaigns', 'CampaignsController@preparePdf')->name('FilterCampaignsPDF');
+    Route::post('/prepareCampaigns/PDF', 'CampaignsController@exportPdf')->name('CampaignsPDF');
 
     Route::get('/prepareTasks', 'TasksController@preparePdf')->name('FilterTasksPDF');
     Route::post('/prepareTasks/PDF', 'TasksController@exportPdf')->name('TasksPDF');

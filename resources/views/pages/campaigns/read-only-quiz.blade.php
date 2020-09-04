@@ -20,7 +20,7 @@
                             <div class="card-header p-0">
                                 <div class="bg-info text-white text-center py-2">
                                     <h3><i class="fa fa-phone-square"></i> Ingreso de Datos</h3>
-                                    <p class="m-0">Pronto un empleado de Track CRM se pondra en contacto contigo.</p>
+                                    <p class="m-0">Pronto un ejecutivo de Track CRM se pondra en contacto contigo.</p>
                                 </div>
                             </div>
                             <div class="card-body p-3">

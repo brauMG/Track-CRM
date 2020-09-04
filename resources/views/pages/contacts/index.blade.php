@@ -19,8 +19,13 @@
             <div class="alert alert-danger" class='message' id='message'>{{ session('danger') }}</div>
         </div>
     @endif
+    @if ( session('success') )
+        <div class="container-edits" style="margin-top: 2%">
+            <div class="alert alert-success" class='message' id='message'>{{ session('success') }}</div>
+        </div>
+    @endif
 
-    <section class="content">
+    <section class="content with-sponsor">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -109,7 +114,23 @@
                                         <td>{{ $item->first_name }}</td>
                                         <td>{{ $item->middle_name }}</td>
                                         <td>{{ $item->last_name }}</td>
-                                        <td><i class="btn bg-maroon">{{ $item->getStatus->name }}</i></td>
+                                            @if($item->getStatus->name == 'Prospecto')
+                                                <td>
+                                                    <a onclick="changeEstado(this);" clave="{{$item->id}}"><i class="btn bg-gray">{{ $item->getStatus->name }}</i></a>
+                                                </td>
+                                            @elseif($item->getStatus->name == 'Oportunidad')
+                                                <td>
+                                                    <a onclick="changeEstado(this);" clave="{{$item->id}}"><i class="btn bg-yellow">{{ $item->getStatus->name }}</i></a>
+                                                </td>
+                                            @elseif($item->getStatus->name == 'Cliente')
+                                                <td>
+                                                    <a onclick="changeEstado(this);" clave="{{$item->id}}"><i class="btn bg-green">{{ $item->getStatus->name }}</i></a>
+                                                </td>
+                                            @elseif($item->getStatus->name == 'Cerrado')
+                                                <td>
+                                                    <a onclick="changeEstado(this);" clave="{{$item->id}}"><i class="btn bg-red">{{ $item->getStatus->name }}</i></a>
+                                                </td>
+                                            @endif
                                         @if(\Auth::user()->is_admin == 1)
                                             <td>{{ $item->createdBy->name }}</td>
                                         @endif
@@ -150,4 +171,19 @@
             </div>
         </div>
     </section>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        $('.mydatatable').DataTable();
+
+        function changeEstado(button){
+            var clave = $(button).attr('clave');
+            $('#myModal').load( '{{ url('/admin/contacts/ChangeStatus') }}/'+clave,function(response, status, xhr){
+                if ( status == "success" ) {
+                    $('#myModal').modal('show');
+                }
+            } );
+        }
+    </script>
 @endsection

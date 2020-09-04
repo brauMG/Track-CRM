@@ -20,10 +20,11 @@
 
 <!-- Content Wrapper -->
     <div class="content-wrapper">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true"></div>
         @yield('content')
     </div>
 </div>
-
+@extends('layout.sponsors')
 @include('layout.footer')
 @yield('scripts')
 </body>

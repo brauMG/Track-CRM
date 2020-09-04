@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <section class="content">
+    <section class="content with-sponsor">
         <form method="POST" action="{{ url('/admin/marketing/send') }}" accept-charset="UTF-8" enctype="multipart/form-data">
             {{ csrf_field() }}
         <div class="panel panel-default">

@@ -27,6 +27,7 @@
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{ url('theme') . '/plugins/' }}/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+<link href="{{ asset('bts4/css/sponsors.css') }}" rel="stylesheet">
 <link href="{{ asset('bts4/css/datatables.css') }}" rel="stylesheet">
 <script src="{{ asset('js/datatables.js') }}"></script>
 

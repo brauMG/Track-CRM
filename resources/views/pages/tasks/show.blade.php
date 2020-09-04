@@ -16,7 +16,7 @@
     </section>
 
 
-    <section class="content">
+    <section class="content with-sponsor">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -56,7 +56,7 @@
                                 <tr><th>Fecha de inicio</th> <td>{{ $task->start_date }}</td></tr>
                                 <tr><th>Fecha final</th> <td>{{ $task->end_date }}</td></tr>
                                 <tr><th>Día en el que se completo</th> <td>{{ $task->complete_date }}</td></tr>
-                                <tr><th>Contacto</th> <td> {!! !empty($task->contact_type)&&!empty($task->contact_id)?'<a href="' . url('/admin/contacts/' . $task->contact_id) . '">'.$task->contact->getName() . " (<i class=\"btn bg-maroon\">".$task->contact_type."</i>)".'</a>':"" !!}</td></tr>
+                                <tr><th>Contacto</th> <td> {!! !empty($task->contact_type)&&!empty($task->contact_id)?'<a href="' . url('/admin/contacts/' . $task->contact_id) . '">'.$task->contact->getName() . " (<i class=\"\">".$task->contact_type."</i>)".'</a>':"" !!}</td></tr>
                                 <tr>
                                     <th>Descripción</th> <td>{!! $task->description !!}</td>
                                 </tr>

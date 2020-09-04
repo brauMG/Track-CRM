@@ -16,7 +16,7 @@
     </section>
 
 
-    <section class="content">
+    <section class="content with-sponsor">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -49,7 +49,11 @@
                                 <tr><th> Primer Nombre </th><td> {{ $contact->first_name }} </td>
                                 </tr><tr><th> Segundo Nombre </th><td> {{ $contact->middle_name }} </td></tr>
                                 <tr><th> Apellidos </th><td> {{ $contact->last_name }} </td></tr>
-                                <tr><th> Estado </th><td> <i class="btn bg-maroon">{{ $contact->getStatus->name }}</i> </td></tr>
+                                <tr><th> Estado </th><td>
+                                        @if($contact->getStatus->name == 'Prospecto')<i class="btn bg-gray">{{ $contact->getStatus->name }}</i>
+                                            @elseif($contact->getStatus->name == 'Oportunidad')<i class="btn bg-yellow">{{ $contact->getStatus->name }}</i>
+                                                @elseif($contact->getStatus->name == 'Cliente')<i class="btn bg-green">{{ $contact->getStatus->name }}</i>
+                                                    @elseif($contact->getStatus->name == 'Cerrado')<i class="btn bg-red">{{ $contact->getStatus->name }}</i>@endif</td></tr>
                                 <tr><th> Fuente de referencia </th><td> {{ $contact->referral_cource }} </td></tr>
                                 <tr><th> Titulo de Posición </th><td> {{ $contact->position_title }} </td></tr>
                                 <tr><th> Industría </th><td> {{ $contact->industry }} </td></tr>

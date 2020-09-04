@@ -11,7 +11,7 @@
     </section>
 
 
-    <section class="content">
+    <section class="content with-sponsor">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

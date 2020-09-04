@@ -18,7 +18,7 @@
         </ol>
     </section>
 
-    <section class="content">
+    <section class="content with-sponsor">
         <div class="row">
             <div class="col-md-3">
                 <a href="{{ url('admin/mailbox') }}" class="btn btn-primary btn-block margin-bottom">Volver a la bandeja de entrada</a>

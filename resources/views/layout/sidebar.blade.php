@@ -73,7 +73,7 @@
                 </li>
             @endif
 
-{{--            @if(user_can('list_contacts'))--}}
+            @if(user_can('list_inventory'))
                 <li class="{{ in_array(Request::segment(2), ['inventory', 'catalogue', 'quotation'])?"active":"" }} treeview">
                     <a href="#">
                         <i class="fa fa-shopping-bag"></i> <span>Inventario</span>
@@ -83,7 +83,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{ Request::segment(2) == "inventory"?"active":"" }}">
-                            <a href="{{ url('/admin/inventory') }}"><i class="fa fa-archive"></i> Lista de Artículoss</a>
+                            <a href="{{ url('/admin/inventory') }}"><i class="fa fa-archive"></i> Lista de Artículos</a>
                         </li>
 
                         <li class="{{ Request::segment(2) == "catalogue"?"active":"" }}">
@@ -95,7 +95,7 @@
                         </li>
                     </ul>
                 </li>
-{{--            @endif--}}
+            @endif
 
             {{--            @if(user_can('list_contacts'))--}}
             <li class="{{ in_array(Request::segment(2), ['campaigns', 'marketing', 'promos'])?"active":"" }} treeview">
@@ -177,6 +177,14 @@
                 </li>
             @endif
 
+            @if(\Auth::user()->is_super_admin == 1)
+                <li class="{{ Request::segment(2) == "sponsors"?"active":"" }}">
+                    <a href="{{ url('/admin/sponsors') }}">
+                        <i class="fa fa-folder-open"></i> <span>Patrocinadores</span>
+                    </a>
+                </li>
+            @endif
+
             @if(\Auth::user()->is_admin == 1)
                 <li class="{{ in_array(Request::segment(2), ['users', 'permissions', 'roles'])?"active":"" }} treeview">
                     <a href="#">
@@ -200,7 +208,7 @@
                 </li>
             @endif
 
-            <li class="{{ in_array(Request::segment(2), ['prepareTasks', 'prepareContacts', 'prepareInventory'])?"active":"" }} treeview">
+            <li class="{{ in_array(Request::segment(2), ['prepareTasks', 'prepareContacts', 'prepareInventory', 'prepareCampaigns'])?"active":"" }} treeview">
                 <a href="#">
                     <i class="fa fa-users"></i> <span>Generar Reportes</span>
                     <span class="pull-right-container">
@@ -215,6 +223,9 @@
                     </li>
                     <li class="{{ Request::segment(2) == "prepareInventory"?"active":"" }}">
                         <a href="{{ url('/admin/prepareInventory') }}"><i class="fa fa-list"></i> De Inventario</a>
+                    </li>
+                    <li class="{{ Request::segment(2) == "prepareCampaigns"?"active":"" }}">
+                        <a href="{{ url('/admin/prepareCampaigns') }}"><i class="fa fa-list"></i> De Campañas</a>
                     </li>
                 </ul>
             </li>

@@ -24,7 +24,7 @@
         </ol>
     </section>
 
-    <section class="content">
+    <section class="content with-sponsor">
         <div class="row">
             <div class="col-md-3">
                 <div class="box box-solid">

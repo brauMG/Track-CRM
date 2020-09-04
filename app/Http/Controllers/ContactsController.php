@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actividad;
 use App\Helpers\MailerFactory;
 use App\Imports\ContactsImport;
 use App\Models\Campaigns;
@@ -138,6 +139,13 @@ class ContactsController extends Controller
         $requestData['campaign_id'] = $request->campaign;
 
         $contact = Contact::create($requestData);
+
+        $reached = Contact::where('campaign_id', $request->campaign)->get();
+        $reached = count($reached);
+
+        Campaigns::where('id', $request->campaign)->update([
+            'contacts_reached' => $reached
+        ]);
 
         $emails = array_filter($emails, function ($value) {
             return !empty($value);
@@ -527,6 +535,31 @@ class ContactsController extends Controller
             $query->where('assigned_user_id', Auth::user()->id)
                 ->orWhere('created_by_id', Auth::user()->id);
         })->get();
+    }
+
+    public function editStatus($id) {
+        $contactoEstado = Contact::where('id', $id)->get()->toArray();
+        $contactoEstado = $contactoEstado[0];
+        $estados= [
+            1,
+            2,
+            3,
+            4
+        ];
+        return view('pages.contacts.editStatus', compact('estados', 'contactoEstado'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $status = $request->validate([
+            'status' => ['required']
+        ]);
+
+        Contact::where('id', $id)->update([
+            'status' => $status['status'],
+        ]);
+
+        return back()->with('success', 'Estado actualizado correctamente');
     }
 
     public function import(Request $request)

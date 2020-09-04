@@ -9,7 +9,7 @@
 <div class="wrapper-less">
     <div class="jumbotron text-center" style="padding-top: 20% !important;">
         <h1 class="display-3">Gracias!</h1>
-        <p class="lead"><strong>Por favor mantente al pendiente</strong> pronto un empleado de Track CRM se pondra en contacto contigo.</p>
+        <p class="lead"><strong>Por favor mantente al pendiente</strong> pronto un ejecutivo de Track CRM se pondra en contacto contigo.</p>
         <hr>
         <p>
             Tus datos solo seran utilizados para contactarte
