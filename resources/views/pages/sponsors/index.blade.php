@@ -57,7 +57,7 @@
                                         <tr>
                                             <td class="td td-center" style="vertical-align: middle">{{ $item->sponsorId }}</td>
                                             <td class="td td-center" style="text-align: center">
-                                                <img src="{{ url('uploads/sponsors/' . $item->image) }}" width="100" height="100" />
+                                                <img src="{{ url('uploads/sponsors/' . $item->image) }}" width="200" height="50" />
                                             </td>
                                             <td class="td td-center" style="vertical-align: middle">{{ $item->name }}</td>
                                             <td class="td td-center" style="vertical-align: middle">{{ $item->description }}</td>
