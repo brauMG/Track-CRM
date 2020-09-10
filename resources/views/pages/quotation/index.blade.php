@@ -22,9 +22,11 @@
 
                         @include('includes.flash_message')
 
+                        @if(user_can('create-quotations'))
                             <a href="{{ url('/admin/quotation/create') }}" class="btn btn-success btn-sm pull-right" title="Add New Item">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Añadir Nueva Cotización
                             </a>
+                        @endif
 
                             <form method="GET" action="{{ url('/admin/quotation') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="search">
                                 <div class="input-group">
@@ -60,13 +62,19 @@
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->description }}</td>
                                                 <td class="td td-center" style="vertical-align: middle">{{$item->name}} {{$item->middle_name}} {{$item->last_name}}</td>
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->user }}</td>
-                                                <td class="td td-center" style="vertical-align: middle"><a target="_blank" href="{{ URL::to('/') }}/uploads/quotation/{{$item->file}}">Ver</a></td>
+                                                <td class="td td-center" style="vertical-align: middle"><a target="_blank" href="{{ URL::to('/') }}/uploads/quotation/{{$item->file}}">
+                                                        @if(user_can('download-quotations'))
+                                                            Ver
+                                                        @endif
+                                                    </a></td>
                                                 <td class="td td-center" style="vertical-align: middle">
-                                                    <form method="POST" action="{{ url('/admin/quotation' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                        {{ method_field('DELETE') }}
-                                                        {{ csrf_field() }}
-                                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete catalogue" onclick="return confirm('Seguro?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
-                                                    </form>
+                                                    @if(user_can('delete-quotations'))
+                                                        <form method="POST" action="{{ url('/admin/quotation' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                            {{ method_field('DELETE') }}
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete catalogue" onclick="return confirm('Seguro?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

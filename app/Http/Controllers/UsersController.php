@@ -126,7 +126,7 @@ class UsersController extends Controller
 
         User::create($requestData);
 
-        return redirect('admin/users')->with('flash_message', 'Usuario añadido');
+        return redirect('admin/users')->with('flash_message', 'Usuario añadido, en caso de ser un agente, comunícate con el super administrador del Track para asignarlo su rol en tawk.to');
     }
 
     /**
@@ -195,9 +195,9 @@ class UsersController extends Controller
         if($user->is_admin == 0 && getSetting("enable_email_notification") == 1 && $requestData['is_active'] != $old_is_active) {
 
             if($requestData['is_active'] == 1) {
-                $subject = "Tu cuenta en CRM Track ha sido activada";
+                $subject = "Tu cuenta en Track ha sido activada";
             } else {
-                $subject = "Tu cuenta en CRM Track ha sido desactivada";
+                $subject = "Tu cuenta en Track ha sido desactivada";
             }
 
             $this->mailer->sendActivateBannedEmail($subject, $user);

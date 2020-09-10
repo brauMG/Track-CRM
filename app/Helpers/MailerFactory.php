@@ -9,7 +9,7 @@ class MailerFactory
 {
     protected $mailer;
     protected $fromAddress = '';
-    protected $fromName = 'Track CRM';
+    protected $fromName = 'Track';
 
 
     /**

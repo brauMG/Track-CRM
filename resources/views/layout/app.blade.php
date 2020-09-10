@@ -1,7 +1,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <title>CRM @yield('title')</title>
+    <title>Track @yield('title')</title>
 
     <meta name="csrf_token" content="{{ csrf_token() }}" />
 
@@ -12,6 +12,8 @@
     </script>
 
 </head>
+<!--Start of Tawk.to Script-->
+<!--End of Tawk.to Script-->
 <body class="hold-transition skin-blue sidebar-mini">
 
 <div class="wrapper">

@@ -27,13 +27,17 @@
 
                         <a href="{{ URL::previous() }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</button></a>
 
+                        @if(user_can('edit-articles'))
                         <a href="{{ url('/admin/inventory/' . $inventory->id . '/edit') }}" title="Edit item"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                        @endif
 
+                        @if(user_can('delete-articles'))
                         <form method="POST" action="{{ url('admin/inventory' . '/' . $inventory->id) }}" accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-danger btn-sm" title="Delete item" onclick="return confirm('Seguro?');"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                         </form>
+                        @endif
                         <br/>
                         <br/>
 

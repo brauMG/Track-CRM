@@ -16,7 +16,8 @@ class Promo  extends Mailable
     public $secondP;
     public $imageLink;
     public $pdf;
-    public $subject = "Conoce nuestras promociones- Track CRM";
+    public $url;
+    public $subject = "Conoce nuestras promociones- Track";
 
     use Queueable, SerializesModels;
 
@@ -25,13 +26,14 @@ class Promo  extends Mailable
      *
      * @return void
      */
-    public function __construct($title, $firstP, $secondP, $imageLink, $pdf)
+    public function __construct($title, $firstP, $secondP, $imageLink, $pdf, $url)
     {
         $this->title = $title;
         $this->firstP = $firstP;
         $this->secondP = $secondP;
         $this->imageLink = $imageLink;
         $this->pdf = $pdf;
+        $this->url = $url;
     }
 
     /**

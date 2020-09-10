@@ -22,9 +22,11 @@
 
                         @include('includes.flash_message')
 
+                        @if(user_can('create-articles'))
                             <a href="{{ url('/admin/inventory/create') }}" class="btn btn-success btn-sm pull-right" title="Add New Item">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Añadir Nuevo Artículo
                             </a>
+                        @endif
 
                             <form method="GET" action="{{ url('/admin/inventory') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="search">
                                 <div class="input-group">
@@ -65,12 +67,16 @@
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->stock }}</td>
                                                 <td class="td td-center" style="vertical-align: middle">
                                                     <a href="{{ url('/admin/inventory/' . $item->id) }}" title="View inventory"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
+                                                    @if(user_can('edit-articles'))
                                                     <a href="{{ url('/admin/inventory/' . $item->id . '/edit') }}" title="Edit inventory"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
+                                                    @endif
+                                                    @if(user_can('delete-articles'))
                                                     <form method="POST" action="{{ url('/admin/inventory' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Delete item" onclick="return confirm('Seguro?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                                     </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

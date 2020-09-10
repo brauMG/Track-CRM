@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Mail\ContactoAsignado;
 use App\Models\Campaigns;
+use App\Models\Companies;
 use App\Models\Contact;
 use App\Models\ContactEmail;
 use App\Models\ContactPhone;
@@ -173,8 +174,12 @@ class CampaignsController extends Controller
 
     public function quiz($id)
     {
+        $campaign = Campaigns::find($id);
+        $company_id = $campaign->company_id;
+        $company = Companies::find($company_id);
+        $company_name = $company->name;
         if (Auth::guest()) {
-            return view('pages.campaigns.quiz', compact('id'));
+            return view('pages.campaigns.quiz', compact('id', 'company_name'));
         }
         else {
             return view('pages.campaigns.read-only-quiz', compact('id'));
@@ -227,6 +232,8 @@ class CampaignsController extends Controller
             'email' => 'email|required',
             'phone' => 'required|numeric',
         ]);
+
+        $company_name = $request->company_name;
 
         $requestData = $request->all();
 
@@ -293,7 +300,7 @@ class CampaignsController extends Controller
         if(getSetting("enable_email_notification") == 1) {
             Mail::to($email)->queue(new ContactoAsignado($user, $contact));
         }
-        return redirect('guest/campaigns/thanks')->with('flash_message', 'Campaña eliminada');
+        return redirect('pages.campaigns.thanks', compact('company_name'));
     }
 
     public function seeLink($id) {

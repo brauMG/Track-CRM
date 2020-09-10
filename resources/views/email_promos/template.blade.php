@@ -498,6 +498,12 @@
                                 <div style="mso-line-height-rule: exactly;line-height: 5px;font-size: 1px;">&nbsp;</div>
                             </div>
 
+                            <div style="Margin-left: 20px;Margin-right: 20px;">
+                                <div class="btn btn--shadow btn--large" style="Margin-bottom: 20px;text-align: center;">
+                                    <![if !mso]><a style="border-radius: 4px;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px 13px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #ffffff !important;box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);background-color: #2e82bf;font-family: Ubuntu, sans-serif;" href="{{$url}}">Contáctanos</a><![endif]>
+                                    <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href=" style=""width:163px" arcsize="9%" fillcolor="#2E82BF" stroke="f"><v:shadow on="t" color="#256899" offset="0,2px"></v:shadow><v:textbox style="mso-fit-shape-to-text:t" inset="0px,11px,0px,10px"><center style="font-size:14px;line-height:24px;color:#FFFFFF;font-family:Ubuntu,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px">Ingresa tus datos</center></v:textbox></v:roundrect><![endif]--></div>
+                            </div>
+
                         </div>
                         <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
                     </div>
@@ -514,7 +520,7 @@
 
                                         </tr></tbody></table>
                                     <div style="font-size: 12px;line-height: 19px;Margin-top: 20px;">
-                                        <div>Track CRM</div>
+                                        <div>Track</div>
                                     </div>
                                     <div style="font-size: 12px;line-height: 19px;Margin-top: 18px;">
                                         <div>Recibiste este correo ya que nuestros productos se relacionan con tus preferencias</div>

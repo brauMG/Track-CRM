@@ -22,9 +22,11 @@
 
                         @include('includes.flash_message')
 
+                        @if(user_can('create-catalogues'))
                             <a href="{{ url('/admin/catalogue/create') }}" class="btn btn-success btn-sm pull-right" title="Add New Item">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Añadir Nuevo Catalogo
                             </a>
+                        @endif
 
                             <form method="GET" action="{{ url('/admin/catalogue') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="search">
                                 <div class="input-group">
@@ -57,13 +59,17 @@
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->id }}</td>
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->name }}</td>
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->description }}</td>
+                                                @if(user_can('download-catalogues'))
                                                 <td class="td td-center" style="vertical-align: middle"><a target="_blank" href="{{ URL::to('/') }}/uploads/catalogue/{{$item->file}}">Ver</a></td>
+                                                @endif
                                                 <td class="td td-center" style="vertical-align: middle">
+                                                    @if(user_can('delete-catalogues'))
                                                     <form method="POST" action="{{ url('/admin/catalogue' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Delete catalogue" onclick="return confirm('Seguro?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                                     </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

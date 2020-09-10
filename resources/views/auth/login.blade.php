@@ -6,7 +6,7 @@
         <div class="container-less">
     <div class="login-box">
         <div class="login-logo" style="color: #001015; font-size: 45px !important;">
-            <b style="color: white">Track</b>CRM
+            <b style="color: white">Track</b>Cloud
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body" style="position: relative !important; z-index: 5 !important; background: #00313a14 !important;">

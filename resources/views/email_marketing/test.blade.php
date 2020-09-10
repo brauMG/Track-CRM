@@ -530,7 +530,7 @@
 
                                         </tr></tbody></table>
                                     <div style="font-size: 12px;line-height: 19px;Margin-top: 20px;">
-                                        <div>Track CRM</div>
+                                        <div>Track</div>
                                     </div>
                                     <div style="font-size: 12px;line-height: 19px;Margin-top: 18px;">
                                         <div>Recibiste este correo ya que nuestros productos se relacionan con tus preferencias</div>

@@ -10,7 +10,11 @@
     <div class="container">
         <div class="login-box" style="width: 100% !important;">
             <div class="login-logo" style="color: #001015; font-size: 45px !important;">
-                <b style="color: white">Track</b>CRM
+                @if($company_name == 'CRM')
+                    <b style="color: white">Track</b>CRM
+                @else
+                    <b style="color: white">Track</b>{{$company_name}}
+                @endif
             </div>
             <!-- /.login-logo -->
                     <div class="row justify-content-center">
@@ -21,10 +25,15 @@
                                     <div class="card-header p-0">
                                         <div class="bg-info text-white text-center py-2">
                                             <h3><i class="fa fa-phone-square"></i> Ingreso de Datos</h3>
-                                            <p class="m-0">Pronto un ejecutivo de Track CRM se pondra en contacto contigo.</p>
+                                            @if($company_name == 'CRM')
+                                                <p class="m-0">Pronto un ejecutivo de Track CRM se pondrá en contacto contigo.</p>
+                                            @else
+                                                <p class="m-0">Pronto un ejecutivo de Track {{$company_name}} se pondrá en contacto contigo.</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <input type="hidden" value="{{$id}}" name="campaign_id">
+                                    <input type="hidden" value="{{$company_name}}" name="company_name">
                                     <div class="card-body p-3">
 
                                         <div class="row">
@@ -61,7 +70,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group mb-2">
                                                         <div class="input-group-prepend">
-                                                            <div class="input-group-text"><i class="fa fa-bell text-info"> <a style="color: #07585c; font-family: 'Source Sans Pro', sans-serif; font-size: 12px">¿Como te enteraste de nuestra campaña?</a></i></div>
+                                                            <div class="input-group-text"><i class="fa fa-bell text-info"> <a style="color: #07585c; font-family: 'Source Sans Pro', sans-serif; font-size: 12px">¿Cómo te enteraste de nuestra campaña?</a></i></div>
                                                         </div>
                                                         <select type="text" class="form-control" id="referral_source" name="referral_source" style="padding: 0" required>
                                                             <option value="Anuncio de Facebook">Anuncio de Facebook</option>

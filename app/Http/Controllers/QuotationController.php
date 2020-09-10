@@ -48,7 +48,7 @@ class QuotationController extends Controller
             if (!empty($keyword)) {
                 $quotation = DB::table('quotation')
                     ->latest()
-                    ->leftJoin('contacts', 'quotation.contact_id', 'contacts.id')
+                    ->leftJoin('contact', 'quotation.contact_id', 'contact.id')
                     ->leftJoin('users', 'quotation.created_by_id', 'users.id')
                     ->where('quotation.created_by_id', Auth::user()->id)
                     ->select('quotation.*', 'contact.first_name as name', 'contact.middle_name as middle_name', 'contact.last_name as last_name', 'users.name as user')
@@ -56,7 +56,7 @@ class QuotationController extends Controller
             } else {
                 $quotation = DB::table('quotation')
                     ->latest()
-                    ->leftJoin('contacts', 'quotation.contact_id', 'contacts.id')
+                    ->leftJoin('contact', 'quotation.contact_id', 'contact.id')
                     ->leftJoin('users', 'quotation.created_by_id', 'users.id')
                     ->where('quotation.created_by_id', Auth::user()->id)
                     ->select('quotation.*', 'contact.first_name as name', 'contact.middle_name as middle_name', 'contact.last_name as last_name', 'users.name as user')

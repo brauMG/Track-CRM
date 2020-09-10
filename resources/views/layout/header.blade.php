@@ -3,9 +3,9 @@
     <!-- Logo -->
     <a href="{{ url('/admin') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">CRM</span>
+        <span class="logo-mini">Track</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>@if(\Auth::user()->company_id == 2) {{'Track'}} @else {{$companyName->get()}} @endif</b>CRM</span>
+        <span class="logo-lg"><b>Track</b>@if(\Auth::user()->company_id == 2) {{'CRM'}} @else {{$companyName->get()}} @endif</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

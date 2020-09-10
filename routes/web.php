@@ -150,6 +150,10 @@ Route::group(['prefix' => 'guest', 'middleware' => 'guest'], function () {
     Route::get('/campaigns/quiz/{id}', 'CampaignsController@quiz')->name('showQuiz');
     Route::post('/campaigns/storeQuiz', 'CampaignsController@storeQuiz')->name('createQuiz');
 
+    Route::get('/promos/thanks', 'PromosController@thanks')->name('thanksContactQuiz');
+    Route::get('/promos/quiz/{id}', 'PromosController@quiz')->name('showContactQuiz');
+    Route::post('/promos/storeQuiz', 'PromosController@storeQuiz')->name('storeContactQuiz');
+
     Route::get('/forbidden', function () {
         return view('pages.forbidden.forbidden_area');
     });

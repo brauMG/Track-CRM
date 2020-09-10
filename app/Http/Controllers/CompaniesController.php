@@ -58,7 +58,7 @@ class CompaniesController extends Controller
 
         Companies::create($requestData);
 
-        return redirect('admin/companies')->with('flash_message', 'Compañia agregada!');
+        return redirect('admin/companies')->with('flash_message', 'Compañia agregada, asegurate de asignarle un departamento en tawk.to');
     }
 
     /**

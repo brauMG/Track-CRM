@@ -17,7 +17,7 @@ class Campaign  extends Mailable
     public $link;
     public $imageLink;
     public $pdf;
-    public $subject = "Conoce nuestros servicios y productos - Track CRM";
+    public $subject = "Conoce nuestros servicios y productos - Track";
 
     use Queueable, SerializesModels;
 
