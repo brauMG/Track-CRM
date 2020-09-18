@@ -73,11 +73,10 @@ class PromosController extends Controller
         $emails = $request->emails;
         $pdf = $request->pdf;
         //local
-        $pdfName = substr($pdf, 39);
+//        $pdfName = substr($pdf, 39);
         //server
-//        $pdfName = substr($pdf, 40);
+        $pdfName = substr($pdf, 40);
         $catalogue_id = Catalogue::where('file', $pdfName)->get();
-        dd($catalogue_id);
         $catalogue_id = $catalogue_id[0]['id'];
         $link = "https://crm-track.com/guest/promos/quiz/";
 //        $link = "http://192.168.66.10/guest/promos/quiz/";
