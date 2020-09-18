@@ -46,12 +46,16 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="pdf" class="control-label">{{ 'Catalogo' }}</label>
-                            <select class="form-control" name="pdf" type="text" id="pdf" required>
-                                @foreach($catalogues as $catalogue)
-                                    <option value="{{ URL::to('/') }}/uploads/catalogue/{{$catalogue->file}}">{{$catalogue->name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend" style="padding-bottom: 3%">
+                                    <div class="input-group-text"><i class="fa fa-calendar"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Catalogo</strong></a></i></div>
+                                </div>
+                                <select class="selectpicker" name="pdf" type="text" id="pdf" data-live-search="true" data-style="btn-primary" data-width="fit" required>
+                                    @foreach($catalogues as $catalogue)
+                                        <option value="{{ URL::to('/') }}/uploads/catalogue/{{$catalogue->file}}">{{$catalogue->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -60,26 +64,41 @@
                             <input class="form-control" name="imageLink" type="text" id="imageLink" placeholder="Ingresa el link de la imagen referente a la campaña" required>
                         </div>
                     </div>
+
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="input-group mb-2">
-                                <div class="input-group-prepend">
+                                <div class="input-group-prepend" style="padding-bottom: 3%">
                                     <div class="input-group-text"><i class="fa fa-address-book"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Enviar a:</strong></a></i></div>
                                 </div>
-                            <div class="form-group" style="justify-content: space-between;">
-                                <div style="margin-top: 3%; height: 110px; width: 200px; overflow-y: scroll;"
-                                @if(count($contacts) == 0)
-                                    <a style="color: #c42623; font-size: 1.2em"><strong>No hay contactos</strong></a>
-                                @else
-                                    @foreach($contacts as $contact)
-                                        <label style="display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></label>
-                                        <input style="position: relative;top: 2px;" type="checkbox" name="emails[]" value="{{$contact->contactEmail}}"> {{$contact->first_name.' '.$contact->last_name.' - '.$contact->contactStatus}}
-                                    @endforeach
-                                @endif
+                                <select class="selectpicker" name="emails[]" type="text" multiple data-live-search="true" data-style="btn-success" data-width="fit" data-actions-box="true" required>
+                                        @foreach($contacts as $contact)
+                                            @if($contact->contactStatus == 'Prospecto')
+                                                <optgroup label="Prospectos">
+                                                    <option value="{{$contact->contactEmail}}"> {{$contact->first_name.' '.$contact->last_name.' - '.$contact->contactStatus}}</option>
+                                                </optgroup>
+                                            @endif
+                                            @if($contact->contactStatus == 'Oportunidad')
+                                                <optgroup label="Oportunidades">
+                                                    <option value="{{$contact->contactEmail}}"> {{$contact->first_name.' '.$contact->last_name.' - '.$contact->contactStatus}}</option>
+                                                </optgroup>
+                                            @endif
+                                            @if($contact->contactStatus == 'Cliente')
+                                                <optgroup label="Clientes">
+                                                    <option value="{{$contact->contactEmail}}"> {{$contact->first_name.' '.$contact->last_name.' - '.$contact->contactStatus}}</option>
+                                                </optgroup>
+                                            @endif
+                                            @if($contact->contactStatus == 'Cerrado')
+                                                <optgroup label="Cerrados">
+                                                    <option value="{{$contact->contactEmail}}"> {{$contact->first_name.' '.$contact->last_name.' - '.$contact->contactStatus}}</option>
+                                                </optgroup>
+                                            @endif
+                                        @endforeach
+                                </select>
                             </div>
                         </div>
-                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -89,5 +108,11 @@
             <a href="{{url('/admin/promos/preview')}}" target="_blank" class="btn btn-info">Vista Referencial</a>
         </div>
         </form>
+
+        <script>
+            $(function () {
+                $('select').selectpicker();
+            });
+        </script>
     </section>
 @endsection

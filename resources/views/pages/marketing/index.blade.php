@@ -73,7 +73,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="emails" class="control-label">{{ 'Enviar a correos (pegalos):' }}</label>
-                            <textarea class="form-control" name="emails" type="text" id="emails" style="padding-bottom: 10% !important;" placeholder="Asegurate de separar un correo de otro por medio de un espacio" required></textarea>
+                            <textarea class="form-control" name="emails" type="text" id="emails" style="padding-bottom: 10% !important;" placeholder="Asegurate de separar un correo de otro por medio de una coma con un espacio, de lo contrario habrá un error, ej: ejemplo1@gmail.com, ejemplo2@gmail.com" required></textarea>
                         </div>
                     </div>
                 </div>

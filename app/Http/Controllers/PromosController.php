@@ -78,8 +78,8 @@ class PromosController extends Controller
 //        $pdfName = substr($pdf, 40);
         $catalogue_id = Catalogue::where('file', $pdfName)->get();
         $catalogue_id = $catalogue_id[0]['id'];
-//        $link = "https://crm-track.com/guest/promos/quiz/";
-        $link = "http://192.168.66.10/guest/promos/quiz/";
+        $link = "https://crm-track.com/guest/promos/quiz/";
+//        $link = "http://192.168.66.10/guest/promos/quiz/";
         $url = $link.$catalogue_id;
 
         foreach ($emails as $email) {

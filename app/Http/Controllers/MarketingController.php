@@ -46,7 +46,9 @@ class MarketingController extends Controller
             'secondP' => 'required',
             'link' => 'required|regex:'.$regex,
             'imageLink' => 'required|regex:'.$regex,
-            'emails' => ['required','regex:/^(\s?[^\s,]+@[^\s,]+\.[^\s,]+\s?)*(\s?[^\s,]+@[^\s,]+\.[^\s,]+)$/'],
+            //regex for validate emails by space
+            //,'regex:/^(\s?[^\s,]+@[^\s,]+\.[^\s,]+\s?)*(\s?[^\s,]+@[^\s,]+\.[^\s,]+)$/'
+            'emails' => ['required'],
             'pdf' => 'required'
         ]);
 
@@ -56,7 +58,8 @@ class MarketingController extends Controller
         $link = $request->link;
         $imageLink = $request->imageLink;
         $emails = $request->emails;
-        $emails = explode(" ", $emails);
+        $explode = ", ";
+        $emails = explode($explode, $emails);
         $pdf = $request->pdf;
 
         foreach ($emails as $email) {

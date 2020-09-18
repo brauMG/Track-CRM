@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -141,6 +142,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/forbidden', function () {
         return view('pages.forbidden.forbidden_area');
+    });
+
+    Route::get('/clear-cache', function() {
+        Artisan::call('cache:clear');
+        return "Cache is cleared";
     });
 });
 

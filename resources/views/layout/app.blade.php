@@ -28,6 +28,5 @@
 </div>
 @extends('layout.sponsors')
 @include('layout.footer')
-@yield('scripts')
 </body>
 </html>
