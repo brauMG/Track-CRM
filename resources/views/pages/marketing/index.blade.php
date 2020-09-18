@@ -46,24 +46,33 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="link" class="control-label">{{ 'Campaña' }}</label>
-                            <select class="form-control" name="link" type="text" id="link" required>
-                                @foreach($campaigns as $campaign)
-                                    <option value="https://crm-track.com/guest/campaigns/quiz/{{$campaign->id}}">{{$campaign->name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend" style="padding-bottom: 5%">
+                                    <div class="input-group-text"><i class="fa fa-calendar"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Campaña</strong></a></i></div>
+                                </div>
+                                <select class="selectpicker" name="link" type="text" id="link" data-live-search="true" data-style="btn-primary" data-width="fit" required>
+                                    @foreach($campaigns as $campaign)
+                                        <option value="https://crm-track.com/guest/campaigns/quiz/{{$campaign->id}}">{{$campaign->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="pdf" class="control-label">{{ 'Catalogo' }}</label>
-                            <select class="form-control" name="pdf" type="text" id="pdf" required>
-                                @foreach($catalogues as $catalogue)
-                                    <option value="{{ URL::to('/') }}/uploads/catalogue/{{$catalogue->file}}">{{$catalogue->name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend" style="padding-bottom: 5%">
+                                    <div class="input-group-text"><i class="fa fa-calendar"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Catalogo</strong></a></i></div>
+                                </div>
+                                <select class="selectpicker" name="pdf" type="text" id="pdf" data-live-search="true" data-style="btn-primary" data-width="fit" required>
+                                    @foreach($catalogues as $catalogue)
+                                        <option value="{{ URL::to('/') }}/uploads/catalogue/{{$catalogue->file}}">{{$catalogue->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="imageLink" class="control-label">{{ 'Vinculo a Imagen (de campaña)' }}</label>
@@ -86,4 +95,10 @@
         </div>
         </form>
     </section>
+
+    <script>
+        $(function () {
+            $('select').selectpicker();
+        });
+    </script>
 @endsection

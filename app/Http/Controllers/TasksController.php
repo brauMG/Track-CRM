@@ -499,7 +499,7 @@ class TasksController extends Controller
             })
             ->where(function($query) use ($prioridad, $request) {
                 if ($prioridad != null) {
-                    $query->whereIn('task.priority', '<=', $prioridad);
+                    $query->whereIn('task.priority', $prioridad);
                 }
             })
             ->select('task.*', 'task_status.name as task_status', 'task_type.name as task_type', 'contact.*', 'contact_status.name as contact_status', 'users.name as user')

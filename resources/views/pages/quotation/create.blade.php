@@ -97,35 +97,33 @@
             </div>
         </div>
     </section>
-@endsection
 
-@section('scripts')
-<script>
-    function add_fields() {
-        var code = document.getElementById("item");
-        var value = code.value.trim();
-        var quatity = document.getElementById("quantity");
-        var value2 = quatity.value.trim();
-        if (!value) {
-            alert("El articulo es necesario");
+    <script>
+        function add_fields() {
+            var code = document.getElementById("item");
+            var value = code.value.trim();
+            var quatity = document.getElementById("quantity");
+            var value2 = quatity.value.trim();
+            if (!value) {
+                alert("El articulo es necesario");
+            }
+            if (value2 == 0) {
+                alert("La cantidad no puede ser 0");
+            }
+            if (value !== '' & value2 > 0) {
+                document.getElementById("myTable").insertRow(-1).innerHTML = '<tr>' +
+                    '<td>' +
+                    '<input style="text-align: center; width: 100%; background-color: transparent" name="items[]"  value="'+value+'" readonly>' +
+                    '</td>' +
+                    '<td>' +
+                    '<input style="text-align: center; width: 10%; background-color: transparent" name="quantities[]"  value="'+value2+'" readonly>' +
+                    '</td >' +
+                    '</tr>';
+            }
         }
-        if (value2 == 0) {
-            alert("La cantidad no puede ser 0");
-        }
-        if (value !== '' & value2 > 0) {
-            document.getElementById("myTable").insertRow(-1).innerHTML = '<tr>' +
-                '<td>' +
-                '<input style="text-align: center; width: 100%; background-color: transparent" name="items[]"  value="'+value+'" readonly>' +
-                '</td>' +
-                '<td>' +
-                '<input style="text-align: center; width: 10%; background-color: transparent" name="quantities[]"  value="'+value2+'" readonly>' +
-                '</td >' +
-                '</tr>';
-        }
-    }
 
-    function myDeleteFunction() {
-        document.getElementById("myTable").deleteRow(-1);
-    }
-</script>
+        function myDeleteFunction() {
+            document.getElementById("myTable").deleteRow(-1);
+        }
+    </script>
 @endsection
