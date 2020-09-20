@@ -46,56 +46,44 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-users"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Asignado a Usuarios</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="asignados_a[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="fit" data-actions-box="true">
-                                @foreach($usuarios as $usuario)
-                                    <option value="{{$usuario->id}}"> {{$usuario->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <div class="input-group-prepend" style="padding-bottom: 1%">
+                <div class="input-group-text"><i class="fa fa-users"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Asignado a Usuarios</strong></a></i></div>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="asignados_a[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="50%" data-actions-box="true">
+                    @foreach($usuarios as $usuario)
+                        <option value="{{$usuario->id}}"> {{$usuario->name}}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-shopping-cart"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Campaña Perteneciente</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="campanias[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="fit" data-actions-box="true">
-                                @foreach($campanias as $campania)
-                                    <option value="{{$campania->id}}"> {{$campania->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <br>
+            <br>
+
+            <div class="input-group-prepend" style="padding-bottom: 1%">
+                <div class="input-group-text"><i class="fa fa-shopping-cart"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Campaña Perteneciente</strong></a></i></div>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="campanias[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="50%" data-actions-box="true">
+                    @foreach($campanias as $campania)
+                        <option value="{{$campania->id}}"> {{$campania->name}}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-bell"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Estados</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="estados[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="fit" data-actions-box="true">
-                                <option value="{{$estados[0]}}">Prospectos</option>
-                                <option value="{{$estados[1]}}">Oportunidades</option>
-                                <option value="{{$estados[2]}}">Clientes</option>
-                                <option value="{{$estados[3]}}">Cerrados</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <br>
+            <br>
+
+            <div class="input-group-prepend" style="padding-bottom: 1%">
+                <div class="input-group-text"><i class="fa fa-bell"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Estados</strong></a></i></div>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="estados[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="50%" data-actions-box="true">
+                    <option value="{{$estados[0]}}">Prospectos</option>
+                    <option value="{{$estados[1]}}">Oportunidades</option>
+                    <option value="{{$estados[2]}}">Clientes</option>
+                    <option value="{{$estados[3]}}">Cerrados</option>
+                </select>
             </div>
 
         <div class="container" style="text-align: center; padding-top: 2%">

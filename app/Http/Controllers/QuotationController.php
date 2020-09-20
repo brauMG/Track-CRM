@@ -86,23 +86,24 @@ class QuotationController extends Controller
         return view('pages.quotation.create', compact('contacts', 'items'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function store(Request $request)
-    {
+    public function fill(Request $request){
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
             'contact_id' => 'required',
-            'items' => 'required',
-            'quantities' => 'required'
+            'items' => 'required'
         ]);
+        $items_ids = $request->items;
+        $items = Inventory::whereIn('id',$items_ids)->get();
+        $name = $request->name;
+        $description = $request->description;
+        $contact_id = $request->contact_id;
 
+        return view('pages.quotation.fill', compact('items', 'name', 'description', 'contact_id'));
+    }
+
+    public function storeFill(Request $request)
+    {
         $items = $request->items;
 
         $quantities = $request->quantities;
@@ -112,12 +113,7 @@ class QuotationController extends Controller
         $i = 0;
 
         foreach ($items as $item) {
-            if (array_key_exists($item, $items_data)) {
-                return redirect('admin/quotation/create')->with('flash_message', 'Ingresaste dos veces el mismo artículo');
-            }
-            else {
                 $items_data[$item] = $quantities[$i];
-            }
             $i++;
         }
 

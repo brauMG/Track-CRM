@@ -20,6 +20,7 @@ select.selectpicker {
     z-index: 1;
     text-align: right;
     white-space: nowrap;
+    padding-bottom: 3% !important;
 }
 .bootstrap-select > .dropdown-toggle.bs-placeholder,
 .bootstrap-select > .dropdown-toggle.bs-placeholder:hover,

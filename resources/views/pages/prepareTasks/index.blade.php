@@ -46,114 +46,95 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-users"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Asignada a Usuarios</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="asignadas_a[]" type="text" multiple data-live-search="true" data-style="btn-info" data-width="fit" data-actions-box="true">
-                                @foreach($users as $user)
-                                    @if($user->id == 2)
-                                    @else
-                                        <option value="{{$user->id}}"> {{$user->name}} - {{$user->email}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <div class="input-group-prepend" style="padding-bottom: 1%;">
+                <div class="input-group-text"><i class="fa fa-users"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Asignada a Usuarios</strong></a></i></div>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="asignadas_a[]" type="text" multiple data-live-search="true" data-style="btn-success" data-width="50%" data-actions-box="true">
+                    @foreach($users as $user)
+                        @if($user->id == 2)
+                        @else
+                            <option value="{{$user->id}}"> {{$user->name}} - {{$user->email}}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-gears"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Estados de Tarea</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="estados[]" type="text" multiple data-live-search="true" data-style="btn-info" data-width="fit" data-actions-box="true">
-                                @foreach($status as $item)
-                                    <option value="{{$item->id}}"> {{$item->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <br>
+            <br>
+
+            <div class="input-group-prepend" style="padding-bottom: 1%">
+                <div class="input-group-text"><i class="fa fa-gears"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Estados de Tarea</strong></a></i></div>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="estados[]" type="text" multiple data-live-search="true" data-style="btn-success" data-width="50%" data-actions-box="true">
+                    @foreach($status as $item)
+                        <option value="{{$item->id}}"> {{$item->name}}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-tasks"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Tipos de Tarea</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="tipos[]" type="text" multiple data-live-search="true" data-style="btn-success" data-width="fit" data-actions-box="true">
-                                @foreach($type as $item)
-                                    <option value="{{$item->id}}"> {{$item->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <br>
+            <br>
+
+
+            <div class="input-group-prepend" style="padding-bottom: 1%">
+                <div class="input-group-text"><i class="fa fa-tasks"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Tipos de Tarea</strong></a></i></div>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="tipos[]" type="text" multiple data-live-search="true" data-style="btn-success" data-width="50%" data-actions-box="true">
+                    @foreach($type as $item)
+                        <option value="{{$item->id}}"> {{$item->name}}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-book"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Con Contactos</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="contactos[]" type="text" multiple data-live-search="true" data-style="btn-success" data-width="fit" data-actions-box="true">
-                                @foreach($contacts as $item)
-                                    <option value="{{$item->id}}"> {{$item->first_name.' '.$item->last_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <br>
+            <br>
+
+            <div class="input-group-prepend" style="padding-bottom: 1%">
+                <div class="input-group-text"><i class="fa fa-book"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Con Contactos</strong></a></i></div>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="contactos[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="50%" data-actions-box="true">
+                    @foreach($contacts as $item)
+                        <option value="{{$item->id}}"> {{$item->first_name.' '.$item->last_name}}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-bookmark"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Con Tipos de Contactos</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="contactos_estado[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="fit" data-actions-box="true">
-                                @foreach($contact_type as $item)
-                                    <option value="{{$item->id}}"> {{$item->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <br>
+            <br>
+
+            <div class="input-group-prepend" style="padding-bottom: 1%">
+                <div class="input-group-text"><i class="fa fa-bookmark"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Con Tipos de Contactos</strong></a></i></div>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="contactos_estado[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="50%" data-actions-box="true">
+                    @foreach($contact_type as $item)
+                        <option value="{{$item->id}}"> {{$item->name}}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend" style="padding-bottom: 3%">
-                                <div class="input-group-text"><i class="fa fa-bell"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Prioridad</strong></a></i></div>
-                            </div>
-                            <select class="selectpicker" name="prioridad[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="fit" data-actions-box="true">
-                                <option value="{{$priority[0]}}">Baja</option>
-                                <option value="{{$priority[1]}}">Normal</option>
-                                <option value="{{$priority[2]}}">Alta</option>
-                                <option value="{{$priority[3]}}">Urgente</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <br>
+            <br>
+
+            <div class="input-group-prepend" style="padding-bottom: 1%">
+                <div class="input-group-text"><i class="fa fa-bell"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Prioridad</strong></a></i></div>
             </div>
+            <div class="form-group">
+                <select class="selectpicker pull-left" name="prioridad[]" type="text" multiple data-live-search="true" data-style="btn-primary" data-width="50%" data-actions-box="true">
+                    <option value="{{$priority[0]}}">Baja</option>
+                    <option value="{{$priority[1]}}">Normal</option>
+                    <option value="{{$priority[2]}}">Alta</option>
+                    <option value="{{$priority[3]}}">Urgente</option>
+                </select>
+            </div>
+
 
             <div class="container" style="text-align: center; padding-top: 2%">
-                <button type="submit" class="btn btn-primary" onclick="myFunction()">Generar Reporte</button>
+                <button type="submit" class="btn btn-info" onclick="myFunction()">Generar Reporte</button>
                 <button type="reset" class="btn btn-warning" onclick="myFunction2()">Limpiar Campos</button>
                 <div id="mySpan" style="text-align: center; padding-top: 1%; color: #16a817; text-transform: uppercase; display: none">
                     <span><strong>El reporte se esta generando y se descargara automaticamente al finalizar</strong></span>

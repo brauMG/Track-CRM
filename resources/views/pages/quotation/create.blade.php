@@ -32,33 +32,19 @@
                             </ul>
                         @endif
 
-                        <form>
+                        <form method="POST" action="{{ url('/admin/quotation/fill') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+
                             <div class="form-group">
                                 <label for="">Seleccion el articulo:</label>
-                                <select id="item" class="form-control" type="text">
+                                <br>
+                                <select id="item" name="items[]" class="selectpicker pull-left" data-width="50%" data-live-search="true" data-style="btn-success" type="text" multiple required data-actions-box="true">
                                     @foreach($items as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}. Cód. {{$item->id}}. en existencia: {{$item->stock}}</option>
+                                        <option value="{{$item->id}}">#{{$item->id}} - {{$item->name}} - {{$item->stock}} en existencia</option>
                                     @endforeach
                                 </select>
                             </div>
-
-                            <div class="form-group">
-                                <label for="">Cantidad:</label>
-                                <input id="quantity" class="form-control" type="number" min="0" value="0">
-                            </div>
-
-                            <div class="form-group text-left">
-                                <button class="btn btn-success" type="button" onclick="add_fields();">
-                                    Añadir Articulo
-                                </button>
-                                <button class="btn btn-danger" type="button" onclick="myDeleteFunction()">
-                                    Eliminar Último Artículo
-                                </button>
-                            </div>
-                        </form>
-
-                        <form method="POST" action="{{ url('/admin/quotation') }}" accept-charset="UTF-8" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                            <br>
 
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                                 <label for="name" class="control-label">{{ 'Nombre' }}</label>
@@ -79,15 +65,8 @@
                                 </select>
                             </div>
 
-                            <table id="myTable" class="table table-bordered">
-                                <tr>
-                                    <th style="text-align: left; width: 15%">Código del Artículo</th>
-                                    <th style="text-align: left">Cantidad</th>
-                                </tr>
-                            </table>
-
                             <div class="form-group">
-                                <input class="btn btn-primary" type="submit" value="Crear">
+                                <input class="btn btn-primary" type="submit" value="Siguiente">
                             </div>
 
                         </form>
@@ -97,33 +76,4 @@
             </div>
         </div>
     </section>
-
-    <script>
-        function add_fields() {
-            var code = document.getElementById("item");
-            var value = code.value.trim();
-            var quatity = document.getElementById("quantity");
-            var value2 = quatity.value.trim();
-            if (!value) {
-                alert("El articulo es necesario");
-            }
-            if (value2 == 0) {
-                alert("La cantidad no puede ser 0");
-            }
-            if (value !== '' & value2 > 0) {
-                document.getElementById("myTable").insertRow(-1).innerHTML = '<tr>' +
-                    '<td>' +
-                    '<input style="text-align: center; width: 100%; background-color: transparent" name="items[]"  value="'+value+'" readonly>' +
-                    '</td>' +
-                    '<td>' +
-                    '<input style="text-align: center; width: 10%; background-color: transparent" name="quantities[]"  value="'+value2+'" readonly>' +
-                    '</td >' +
-                    '</tr>';
-            }
-        }
-
-        function myDeleteFunction() {
-            document.getElementById("myTable").deleteRow(-1);
-        }
-    </script>
 @endsection

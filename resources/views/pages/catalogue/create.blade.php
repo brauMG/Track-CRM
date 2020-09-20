@@ -44,4 +44,9 @@
             </div>
         </div>
     </section>
+    <script>
+        $(function () {
+            $('select').selectpicker();
+        });
+    </script>
 @endsection

@@ -38,19 +38,26 @@
                             <textarea class="form-control" name="secondP" type="text" id="secondP" placeholder="El texto que ingreses se vera reflejado en el segundo párrafo del correo" required></textarea>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="title" class="control-label">{{ 'Titulo' }}</label>
                             <input class="form-control" name="title" type="text" id="title" placeholder="Se vera reflejado en la parte superior del correo" required>
                         </div>
                     </div>
-                    <div class="col-md-3">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="imageLink" class="control-label">{{ 'Vinculo a Imagen (de campaña)' }}</label>
+                            <input class="form-control" name="imageLink" type="text" id="imageLink" placeholder="Ingresa el link de la imagen referente a la campaña" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend" style="padding-bottom: 5%">
                                     <div class="input-group-text"><i class="fa fa-calendar"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Campaña</strong></a></i></div>
                                 </div>
-                                <select class="selectpicker" name="link" type="text" id="link" data-live-search="true" data-style="btn-primary" data-width="fit" required>
+                                <select class="selectpicker pull-left" name="link" type="text" id="link" data-live-search="true" data-style="btn-primary" data-width="fit" required>
                                     @foreach($campaigns as $campaign)
                                         <option value="https://crm-track.com/guest/campaigns/quiz/{{$campaign->id}}">{{$campaign->name}}</option>
                                     @endforeach
@@ -58,25 +65,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend" style="padding-bottom: 5%">
                                     <div class="input-group-text"><i class="fa fa-calendar"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Catalogo</strong></a></i></div>
                                 </div>
-                                <select class="selectpicker" name="pdf" type="text" id="pdf" data-live-search="true" data-style="btn-primary" data-width="fit" required>
+                                <select class="selectpicker pull-left" name="pdf" type="text" id="pdf" data-live-search="true" data-style="btn-primary" data-width="fit" required>
                                     @foreach($catalogues as $catalogue)
                                         <option value="{{ URL::to('/') }}/uploads/catalogue/{{$catalogue->file}}">{{$catalogue->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="imageLink" class="control-label">{{ 'Vinculo a Imagen (de campaña)' }}</label>
-                            <input class="form-control" name="imageLink" type="text" id="imageLink" placeholder="Ingresa el link de la imagen referente a la campaña" required>
                         </div>
                     </div>
                     <div class="col-md-12">
