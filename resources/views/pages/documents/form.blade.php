@@ -47,14 +47,14 @@
     <div class="col-md-6">
         <div class="form-group {{ $errors->has('publish_date') ? 'has-error' : ''}}">
             <label for="publish_date" class="control-label">{{ 'Fecha de Publicación' }}</label>
-            <input class="form-control" name="publish_date" type="text" id="publish_date" value="{{ isset($document->publish_date) ? $document->publish_date : ''}}" >
+            <input class="form-control" name="publish_date" type="date" id="publish_date" value="{{ isset($document->publish_date) ? $document->publish_date : ''}}" >
             {!! $errors->first('publish_date', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group {{ $errors->has('expiration_date') ? 'has-error' : ''}}">
             <label for="expiration_date" class="control-label">{{ 'Fecha de Expiración' }}</label>
-            <input class="form-control" name="expiration_date" type="text" id="expiration_date" value="{{ isset($document->expiration_date) ? $document->expiration_date : ''}}" >
+            <input class="form-control" name="expiration_date" type="date" id="expiration_date" value="{{ isset($document->expiration_date) ? $document->expiration_date : ''}}" >
             {!! $errors->first('expiration_date', '<p class="help-block">:message</p>') !!}
         </div>
     </div>

@@ -81,21 +81,21 @@
                     <div class="col-md-12">
                         <div class="form-group {{ $errors->has('start_date') ? 'has-error' : ''}}">
                             <label for="start_date" class="control-label">{{ 'Fecha de inicio' }}</label>
-                            <input class="form-control" name="start_date" type="text" id="start_date" value="{{ isset($task->start_date) ? $task->start_date : ''}}" required>
+                            <input class="form-control" name="start_date" type="date" id="start_date" value="{{ isset($task->start_date) ? $task->start_date : ''}}" required>
                             {!! $errors->first('start_date', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group {{ $errors->has('end_date') ? 'has-error' : ''}}">
                             <label for="end_date" class="control-label">{{ 'Fecha final' }}</label>
-                            <input class="form-control" name="end_date" type="text" id="end_date" value="{{ isset($task->end_date) ? $task->end_date : ''}}" required>
+                            <input class="form-control" name="end_date" type="date" id="end_date" value="{{ isset($task->end_date) ? $task->end_date : ''}}" required>
                             {!! $errors->first('end_date', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group {{ $errors->has('complete_date') ? 'has-error' : ''}}">
                             <label for="complete_date" class="control-label">{{ 'Día en el que se completo la tarea' }}</label>
-                            <input class="form-control" name="complete_date" type="text" id="complete_date" value="{{ isset($task->complete_date) ? $task->complete_date : ''}}" >
+                            <input class="form-control" name="complete_date" type="date" id="complete_date" value="{{ isset($task->complete_date) ? $task->complete_date : ''}}" >
                             {!! $errors->first('complete_date', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
@@ -107,11 +107,13 @@
 
 <div class="form-group">
     <label for="documents" class="control-label">{{ 'Documentos' }} <i class="fa fa-link"></i></label>
-    <select name="documents[]" id="documents" multiple class="form-control">
+    <br>
+    <select class="selectpicker pull-left" name="documents[]" type="text" id="link" data-live-search="true" data-style="btn-primary" data-width="fit" multiple>
         @foreach($documents as $document)
-            <option value="{{ $document->id }}" {{ isset($selected_documents) && in_array($document->id, $selected_documents)?"seleccionado":"" }}>{{ $document->name }}</option>
+            <option value="{{ $document->id }}" {{ isset($selected_documents) && in_array($document->id, $selected_documents)?"selected":"" }}>{{ $document->name }}</option>
         @endforeach
     </select>
+    <br>
 </div>
 
 @if(\Auth::user()->is_admin == 1)

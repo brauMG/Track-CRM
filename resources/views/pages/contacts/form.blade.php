@@ -229,11 +229,13 @@
 
 <div class="form-group">
     <label for="documents" class="control-label">{{ 'Documentos' }} <i class="fa fa-link"></i></label>
-    <select name="documents[]" id="documents" multiple class="form-control">
+    <br>
+    <select class="selectpicker pull-left" name="documents[]" type="text" id="link" data-live-search="true" data-style="btn-primary" data-width="fit" multiple>
         @foreach($documents as $document)
             <option value="{{ $document->id }}" {{ isset($selected_documents) && in_array($document->id, $selected_documents)?"selected":"" }}>{{ $document->name }}</option>
         @endforeach
     </select>
+    <br>
 </div>
 
 @if(\Auth::user()->is_admin == 1)

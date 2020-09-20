@@ -13,7 +13,7 @@ class Document extends Model
 
     public $timestamps = true;
 
-    protected $fillable = ["name", "file", "status", "type", "publish_date", "expiration_date", "created_by_id", "modified_by_id", "assigned_user_id"];
+    protected $fillable = ["name", "file", "status", "type", "publish_date", "expiration_date", "created_by_id", "modified_by_id", "assigned_user_id", "company_id"];
 
     /**
      * get created by user object

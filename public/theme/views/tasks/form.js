@@ -6,8 +6,6 @@ $(function () {
 
     $("#documents").select2();
 
-    $("#start_date, #end_date, #complete_date").datepicker();
-
     $("#contact_type").on("change", function (e) {
 
         $("#contact_id").html("");

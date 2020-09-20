@@ -83,6 +83,8 @@ class DocumentsController extends Controller
 
         $requestData['created_by_id'] = Auth::user()->id;
 
+        $requestData['company_id'] = Auth::user()->company_id;
+
         $document = Document::create($requestData);
 
         if(isset($requestData['assigned_user_id']) && getSetting("enable_email_notification") == 1) {

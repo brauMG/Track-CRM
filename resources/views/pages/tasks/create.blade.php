@@ -44,10 +44,10 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('scripts')
-
     <script type="text/javascript" src="{{ url('theme/views/tasks/form.js') }}"></script>
-
-@stop
+    <script>
+        $(function () {
+            $('select').selectpicker();
+        });
+    </script>
+@endsection

@@ -64,16 +64,13 @@
     </section>
 
     @include('pages.calendar.includes.event_modal')
-@endsection
-
-@section('scripts')
 
     <!-- fullCalendar -->
-    <script src="{{ url('theme/bower_components/moment/moment.js') }}"></script>
-    <script src="{{ url('theme/bower_components/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+    <script src="{{ url('theme/bower_components/moment/moment.js') }}" defer></script>
+    <script src="{{ url('theme/bower_components/fullcalendar/dist/fullcalendar.min.js') }}" defer></script>
 
     <?php echo $events_js_script ?>
 
-    <script type="text/javascript" src="{{ url('theme/views/calendar/fullcalendar.js') }}"></script>
+    <script type="text/javascript" src="{{ url('theme/views/calendar/fullcalendar.js') }}" defer></script>
 
 @endsection

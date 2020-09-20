@@ -27,7 +27,7 @@ class ContactsController extends Controller
 
     public function __construct(MailerFactory $mailer)
     {
-        $this->middleware('admin:index-list_contacts|create-create_contact|show-view_contact|edit-edit_contact|destroy-delete_contact|getAssignContact-assign_contact', ['except' => ['store', 'update', 'postAssignContact']]);
+//        $this->middleware('admin:index-list_contacts|create-create_contact|show-view_contact|edit-edit_contact|destroy-delete_contact|getAssignContact-assign_contact', ['except' => ['store', 'update', 'postAssignContact']]);
 
         $this->mailer = $mailer;
     }
