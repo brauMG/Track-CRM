@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="">Seleccion el articulo:</label>
                                 <br>
-                                <select id="item" name="items[]" class="selectpicker pull-left" data-width="50%" data-live-search="true" data-style="btn-success" type="text" multiple required data-actions-box="true">
+                                <select id="item" name="items[]" class="selectpicker pull-left" data-width="fit" data-live-search="true" data-style="btn-success" type="text" multiple required data-actions-box="true">
                                     @foreach($items as $item)
                                         <option value="{{$item->id}}">#{{$item->id}} - {{$item->name}} - {{$item->stock}} en existencia</option>
                                     @endforeach

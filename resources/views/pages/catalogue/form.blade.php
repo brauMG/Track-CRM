@@ -12,7 +12,7 @@
     <div class="input-group-text"><i class="fa fa-bookmark"> <a style="color: #195858; font-family: 'Source Sans Pro', sans-serif; font-size: 14px"><strong>Articulos</strong></a></i></div>
 </div>
 <div class="form-group {{ $errors->has('items') ? 'has-error' : ''}}">
-    <select class="selectpicker pull-left" name="items[]" type="text" multiple data-live-search="true" data-style="btn-success" data-actions-box="true" data-width="50%">
+    <select class="selectpicker pull-left" name="items[]" type="text" multiple data-live-search="true" data-style="btn-success" data-actions-box="true" data-width="fit">
         @foreach($items as $item)
             <option value="{{$item->id}}">#{{$item->id}} - {{$item->name}} - {{$item->stock}} en existencia</option>
         @endforeach

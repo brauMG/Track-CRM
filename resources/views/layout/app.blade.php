@@ -21,7 +21,7 @@
 @include('layout.sidebar')
 
 <!-- Content Wrapper -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="overflow: auto">
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true"></div>
         @yield('content')
     </div>
