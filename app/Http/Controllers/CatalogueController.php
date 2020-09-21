@@ -89,7 +89,6 @@ class CatalogueController extends Controller
         $pdf->setOption('margin-bottom', 2);
         $pdf->setOption('margin-left', 2);
         $pdf->setOption('margin-right', 2);
-        return $pdf->download('test.pdf');
 
         checkDirectory("catalogue");
 
