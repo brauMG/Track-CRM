@@ -69,7 +69,7 @@
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->stock }}</td>
                                                 <td class="td td-center" style="vertical-align: middle">
                                                     <input type="hidden" name="items[]" value="{{$item->id}}">
-                                                    <input class="form-control" name="quantities[]" type="number" max="{{$item->stock}}" min="1" value="1" required style="background-color: #013468; color: white; width: 35%; text-align: center; font-size: large; font-family: 'Arial Narrow'">
+                                                    <input class="form-control" name="quantities[]" type="number" max="{{$item->stock}}" min="1" value="1" required style="background-color: #013468; color: white; width: 100%; text-align: center; font-size: large; font-family: 'Arial Narrow'">
                                                 </td>
                                             </tr>
                                         @endforeach
