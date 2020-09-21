@@ -32,6 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('/catalogue', 'CatalogueController');
 
     Route::resource('/quotation', 'QuotationController');
+    Route::get('/quotation/test', 'QuotationController@test');
     Route::post('/quotation/fill', 'QuotationController@fill');
     Route::post('/quotation/storeFill', 'QuotationController@storeFill')->name('Filled');
 

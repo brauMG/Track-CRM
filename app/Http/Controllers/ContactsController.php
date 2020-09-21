@@ -13,7 +13,7 @@ use App\Models\ContactPhone;
 use App\Models\ContactStatus;
 use App\Models\Document;
 use App\User;
-use PDF;
+use DomPDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -629,7 +629,7 @@ class ContactsController extends Controller
             ->get();
 
 
-        $pdf = PDF::loadView('pdf.contacts', compact('contactos'));
+        $pdf = DomPDF::loadView('pdf.contacts', compact('contactos'));
 
         return $pdf->download('contactos.pdf');
     }

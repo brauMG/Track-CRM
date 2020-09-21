@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use const http\Client\Curl\AUTH_ANY;
-use PDF;
+use DomPDF;
 
 class CampaignsController extends Controller
 {
@@ -361,7 +361,7 @@ class CampaignsController extends Controller
             ->where('campaigns.company_id', Auth::user()->company_id)
             ->get();
 
-        $pdf = PDF::loadView('pdf.campaigns', compact('campanias'));
+        $pdf = DomPDF::loadView('pdf.campaigns', compact('campanias'));
 
         return $pdf->download('campañas.pdf');
     }

@@ -15,7 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use PDF;
+use DomPDF;
 
 
 class TasksController extends Controller
@@ -506,7 +506,7 @@ class TasksController extends Controller
             ->get();
 
 
-        $pdf = PDF::loadView('pdf.tasks', compact('tareas'));
+        $pdf = DomPDF::loadView('pdf.tasks', compact('tareas'));
 
         return $pdf->download('tareas.pdf');
     }

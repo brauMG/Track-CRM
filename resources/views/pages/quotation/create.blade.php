@@ -45,6 +45,7 @@
                                 </select>
                             </div>
                             <br>
+                            <br>
 
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
                                 <label for="name" class="control-label">{{ 'Nombre' }}</label>

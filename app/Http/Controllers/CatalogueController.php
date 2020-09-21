@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\Inventory;
 use Carbon\Carbon;
-use PDF;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use App\Models\Catalogue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,6 +83,13 @@ class CatalogueController extends Controller
 
         //generating and saving the pdf in the server
         $pdf = PDF::loadView('pdf.catalogue', compact('items'));
+        $pdf->setOption('encoding', 'UTF-8');
+        $pdf->setOption('images', true);
+        $pdf->setOption('margin-top', 2);
+        $pdf->setOption('margin-bottom', 2);
+        $pdf->setOption('margin-left', 2);
+        $pdf->setOption('margin-right', 2);
+        return $pdf->download('test.pdf');
 
         checkDirectory("catalogue");
 

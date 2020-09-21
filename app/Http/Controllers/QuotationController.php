@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use PDF;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
+//use DomPDF;
 use App\Models\Contact;
 use App\Models\Inventory;
 use App\Models\Quotation;
@@ -65,6 +66,10 @@ class QuotationController extends Controller
         }
 
         return view('pages.quotation.index', compact('quotation'));
+    }
+
+    public function test() {
+        return view('pdf.test_quotation');
     }
 
     /**
@@ -161,18 +166,24 @@ class QuotationController extends Controller
         $requestData['contact_id'] = $request->contact_id;
         $requestData['created_by_id'] = Auth::user()->id;
 
+        $name = Contact::find($request->contact_id);
+        $name = $name->first_name.' '.$name->middle_name.' '.$name->last_name;
+
         //generating and saving the pdf in the server
-        $pdf = PDF::loadView('pdf.quotation', compact('items_quotation', 'precio_total'));
+        $pdf = PDF::loadView('pdf.quotation', compact('items_quotation', 'precio_total', 'name'));
+        $pdf->setOption('encoding', 'UTF-8');
 
         checkDirectory("quotation");
 
-        $quotation = $pdf->output($fileName);
-
         $path = public_path('/uploads/quotation/' . $fileName);
 
-        file_put_contents($path, $quotation);
+        $output = $pdf->output();
+
+        file_put_contents($path, $output);
 
         Quotation::create($requestData);
+
+//        echo $pdf->output();
 
         return redirect('admin/quotation')->with('flash_message', 'Cotización añadida!');
     }
@@ -184,10 +195,6 @@ class QuotationController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function test($items_quotation, $precio_total)
-    {
-        return view('pages.pdf.test_quotation', compact('items_quotation', 'precio_total'));
-    }
 
     public function show($id)
     {
