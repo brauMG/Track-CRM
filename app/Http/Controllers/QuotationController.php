@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Models\Companies;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 //use DomPDF;
 use App\Models\Contact;
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\DB;
 
 class QuotationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -109,6 +114,8 @@ class QuotationController extends Controller
 
     public function storeFill(Request $request)
     {
+        $company = Companies::find(Auth::user()->company_id);
+
         $items = $request->items;
 
         $quantities = $request->quantities;
@@ -170,8 +177,9 @@ class QuotationController extends Controller
         $name = $name->first_name.' '.$name->middle_name.' '.$name->last_name;
 
         //generating and saving the pdf in the server
-        $pdf = PDF::loadView('pdf.quotation', compact('items_quotation', 'precio_total', 'name'));
+        $pdf = PDF::loadView('pdf.quotation', compact('items_quotation', 'precio_total', 'name', 'company'));
         $pdf->setOption('encoding', 'UTF-8');
+
 
         checkDirectory("quotation");
 

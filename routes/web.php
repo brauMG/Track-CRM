@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
-        Route::get('/', function () {
-            return view('pages.home.index');
-        });
+    Route::get('/', 'HomeController@index');
 
     Route::resource('/companies', 'CompaniesController')->middleware('superadmin');
 

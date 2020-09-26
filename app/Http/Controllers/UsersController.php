@@ -17,7 +17,7 @@ class UsersController extends Controller
 
     public function __construct(MailerFactory $mailer)
     {
-        $this->middleware('admin', ['except' => ['getProfile', 'getEditProfile', 'postEditProfile']]);
+        $this->middleware('admin', ['auth', 'verified']);
 
         $this->mailer = $mailer;
     }
@@ -124,7 +124,9 @@ class UsersController extends Controller
             $requestData['is_admin'] = 1;
         }
 
-        User::create($requestData);
+        $user = User::create($requestData);
+
+        $user->sendEmailVerificationNotification();
 
         return redirect('admin/users')->with('flash_message', 'Usuario añadido, en caso de ser un agente, comunícate con el super administrador del Track para asignarlo su rol en tawk.to');
     }
@@ -202,6 +204,8 @@ class UsersController extends Controller
 
             $this->mailer->sendActivateBannedEmail($subject, $user);
         }
+
+        $user->sendEmailVerificationNotification();
 
         return redirect('admin/users')->with('flash_message', 'Usuario actualizado');
     }

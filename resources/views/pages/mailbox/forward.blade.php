@@ -33,14 +33,6 @@
                             <h3 class="box-title">Mensaje de seguimiento</h3>
                         </div>
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                    @endif
-
                     <!-- /.box-header -->
                         <div class="box-body">
                             <div class="form-group">

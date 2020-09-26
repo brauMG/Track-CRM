@@ -33,14 +33,6 @@
                             <h3 class="box-title">Responder a {{ $mailbox->sender->name }}</h3>
                         </div>
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                    @endif
-
                     <!-- /.box-header -->
                         <div class="box-body">
                             <div class="form-group">

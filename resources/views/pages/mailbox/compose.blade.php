@@ -33,14 +33,6 @@
                             <h3 class="box-title">Crear Nuevo Mensaje</h3>
                         </div>
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>Crear
-                                @endforeach
-                            </ul>
-                    @endif
-
                     <!-- /.box-header -->
                         <div class="box-body">
                             <div class="form-group">

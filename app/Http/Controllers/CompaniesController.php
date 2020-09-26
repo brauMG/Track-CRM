@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class CompaniesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
 
     public function index(Request $request)
     {
@@ -54,6 +58,11 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email'
+        ]);
+
         $requestData = $request->all();
 
         Companies::create($requestData);
@@ -112,6 +121,10 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email'
+        ]);
 
         $requestData = $request->all();
 

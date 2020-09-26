@@ -57,7 +57,7 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>@if($item->is_active == 1){{ 'Activa' }} @else {{ 'Baneada' }} @endif</td>
+                                        <td>@if($item->is_active == 1){{ 'Activa' }} @else {{ 'Inactiva' }} @endif</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
                                             <a href="{{ url('/admin/companies/' . $item->id) }}" title="View company"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>

@@ -1,4 +1,4 @@
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" xmlns:livewire="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>Track @yield('title')</title>
@@ -6,6 +6,8 @@
     <meta name="csrf_token" content="{{ csrf_token() }}" />
 
     @include('layout.styles')
+
+    <livewire:styles/>
 
     <script>
         var BASE_URL = '{{ url("/") }}';
@@ -28,5 +30,6 @@
 </div>
 @extends('layout.sponsors')
 @include('layout.footer')
+<livewire:scripts/>
 </body>
 </html>

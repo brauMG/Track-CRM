@@ -1,29 +1,29 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     <label for="name" class="control-label">{{ 'Nombre' }}</label>
-    <input class="form-control" name="name" type="text" id="name">
+    <input class="form-control" name="name" type="text" id="name" required>
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
     <label for="email" class="control-label">{{ 'Correo electrónico' }}</label>
-    <input class="form-control" name="email" type="text" id="email">
+    <input class="form-control" name="email" type="email" id="email" required>
     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
 </div>
 @if($formMode == 'create')
     <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
         <label for="password" class="control-label">{{ 'Contraseña' }}</label>
-        <input class="form-control" name="password" type="password" id="password">
+        <input class="form-control" name="password" type="password" id="password" required>
         {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
     </div>
 @endif
 <div class="form-group {{ $errors->has('position_title') ? 'has-error' : ''}}">
     <label for="position_title" class="control-label">{{ 'Posición' }}</label>
-    <input class="form-control" name="position_title" type="text" id="position_title">
+    <input class="form-control" name="position_title" type="text" id="position_title" required>
     {!! $errors->first('position_title', '<p class="help-block">:message</p>') !!}
 </div>
 
 <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
     <label for="phone" class="control-label">{{ 'Teléfono' }}</label>
-    <input class="form-control" name="phone" type="text" id="phone">
+    <input class="form-control" name="phone" type="text" id="phone" required>
     {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
 </div>
 
@@ -41,7 +41,7 @@
     <div class="form-group {{ $errors->has('is_active') ? 'has-error' : ''}}">
         <label for="is_active" class="control-label">
             <input type="checkbox" name="is_active" id="is_active" value="1" class="minimal" checked>
-            {{ 'Activo / Baneado' }}
+            {{ 'Activo / Inactivo' }}
         </label>
         {!! $errors->first('is_active', '<p class="help-block">:message</p>') !!}
     </div>
@@ -50,7 +50,7 @@
 @if($formMode = 'create')
 <div class="form-group {{ $errors->has('company_id') ? 'has-error' : ''}}">
     <label for="company_id" class="control-label">{{ 'Compañia' }}</label>
-    <select class="form-control" name="company_id" type="text" id="company_id">
+    <select class="form-control" name="company_id" type="text" id="company_id" required>
             @foreach($companies as $item)
                     <option value="{{ $item->id }}">{{ $item->name}}</option>
             @endforeach

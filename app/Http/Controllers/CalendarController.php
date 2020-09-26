@@ -10,7 +10,7 @@ class CalendarController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin:index-show_calendar');
+        $this->middleware(['auth', 'verified']);
     }
 
     public function index()

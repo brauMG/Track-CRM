@@ -24,14 +24,6 @@
                         <br />
                         <br />
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
                         <form method="POST" action="{{ url('/admin/users/role/' . $user->id) }}" accept-charset="UTF-8" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             {{ method_field('put') }}

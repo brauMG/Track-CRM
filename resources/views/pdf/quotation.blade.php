@@ -42,5 +42,10 @@
         <h5 class="card-title">Total: {{$precio_total}}.00 MXN.</h5>
     </div>
 </div>
+<div class="container border" style="width: 25% !important; padding-top: 2% !important;">
+    <a>Compañia: {{$company->name}}</a>
+    <br>
+    <a>Contacto: {{$company->email}}</a>
+</div>
 </body>
 </html>

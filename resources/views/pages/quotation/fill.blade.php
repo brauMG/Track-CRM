@@ -24,13 +24,6 @@
                         <br />
                         <br />
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
 
                             <form method="POST" action="{{route('Filled')}}" accept-charset="UTF-8" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -38,7 +31,7 @@
                             <input type="hidden" name="description" value="{{$description}}">
                             <input type="hidden" name="contact_id" value="{{$contact_id}}">
 
-                            <div class="form-group">
+                                <div class="form-group">
                                 <input class="btn btn-primary" type="submit" value="Generar Catalogo">
                             </div>
 

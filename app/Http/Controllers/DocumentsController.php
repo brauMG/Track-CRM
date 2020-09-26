@@ -16,7 +16,7 @@ class DocumentsController extends Controller
 
     public function __construct(MailerFactory $mailer)
     {
-        $this->middleware('admin:index-list_documents|create-create_document|show-view_document|edit-edit_document|destroy-delete_document', ['except' => ['store', 'update']]);
+        $this->middleware('admin:index-list_documents|create-create_document|show-view_document|edit-edit_document|destroy-delete_document', ['except' => ['store', 'update'], ['verify' => true]]);
 
         $this->mailer = $mailer;
     }

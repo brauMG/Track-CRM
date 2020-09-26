@@ -17,6 +17,10 @@ use Snowfire\Beautymail\Beautymail;
 
 class MarketingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      *

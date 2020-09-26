@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Companies;
 use App\Models\Inventory;
 use Carbon\Carbon;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Auth;
 
 class CatalogueController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -56,6 +61,8 @@ class CatalogueController extends Controller
      */
     public function store(Request $request)
     {
+        $company = Companies::find(Auth::user()->company_id);
+
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
@@ -82,7 +89,7 @@ class CatalogueController extends Controller
         $requestData['company_id'] = Auth::user()->company_id;
 
         //generating and saving the pdf in the server
-        $pdf = PDF::loadView('pdf.catalogue', compact('items'));
+        $pdf = PDF::loadView('pdf.catalogue', compact('items', 'company'));
         $pdf->setOption('encoding', 'UTF-8');
         $pdf->setOption('images', true);
         $pdf->setOption('margin-top', 2);

@@ -22,7 +22,7 @@ class MailboxController extends Controller
 
     public function __construct(MailerFactory $mailer)
     {
-        $this->middleware('admin:index-list_emails|create-compose_email|show-view_email|toggleImportant-toggle_important_email|trash-trash_email|getReply-reply_email|getForward-forward_email|send-send_email', ['except' => ['store', 'postReply', 'postForward']]);
+        $this->middleware(['auth', 'verified']);
 
         $this->mailer = $mailer;
 

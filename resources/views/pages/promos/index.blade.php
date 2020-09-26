@@ -30,18 +30,21 @@
                         <div class="form-group">
                             <label for="firstP" class="control-label">{{ 'Primer Párrafo' }}</label>
                             <textarea class="form-control" name="firstP" type="text" id="firstP" placeholder="El texto que ingreses se vera reflejado en el primer párrafo del correo" required></textarea>
+                            {!! $errors->first('firstP', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="secondP" class="control-label">{{ 'Segundo Párrafo' }}</label>
                             <textarea class="form-control" name="secondP" type="text" id="secondP" placeholder="El texto que ingreses se vera reflejado en el segundo párrafo del correo" required></textarea>
+                            {!! $errors->first('secondP', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="title" class="control-label">{{ 'Titulo' }}</label>
                             <input class="form-control" name="title" type="text" id="title" placeholder="Se vera reflejado en la parte superior del correo" required>
+                            {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -55,6 +58,7 @@
                                         <option value="{{ URL::to('/') }}/uploads/catalogue/{{$catalogue->file}}">{{$catalogue->name}}</option>
                                     @endforeach
                                 </select>
+                                {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -62,6 +66,7 @@
                         <div class="form-group">
                             <label for="imageLink" class="control-label">{{ 'Vinculo a Imagen (de campaña)' }}</label>
                             <input class="form-control" name="imageLink" type="text" id="imageLink" placeholder="Ingresa el link de la imagen referente a la campaña" required>
+                            {!! $errors->first('imageLink', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
 
@@ -95,6 +100,7 @@
                                             @endif
                                         @endforeach
                                 </select>
+                                {!! $errors->first('emails', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
                     </div>

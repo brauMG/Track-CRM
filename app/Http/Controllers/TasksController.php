@@ -25,7 +25,7 @@ class TasksController extends Controller
 
     public function __construct(MailerFactory $mailer)
     {
-        $this->middleware('admin:index-list_tasks|create-create_task|show-view_task|edit-edit_task|destroy-delete_task|getAssignTask-assign_task|getUpdateStatus-update_task_status', ['except' => ['store', 'update', 'postAssignTask', 'postUpdateStatus']]);
+        $this->middleware(['auth', 'verified']);
 
         $this->mailer = $mailer;
     }

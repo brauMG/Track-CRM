@@ -22,10 +22,6 @@
 
                         @include('includes.flash_message')
 
-                        <a href="{{ url('/admin/permissions/create') }}" class="btn btn-success btn-sm pull-right" title="Add New permission">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Añadir Nuevo
-                        </a>
-
                         <form method="GET" action="{{ url('/admin/permissions') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Buscar..." value="{{ request('search') }}">

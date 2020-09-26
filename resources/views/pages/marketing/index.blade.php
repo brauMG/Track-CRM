@@ -30,18 +30,21 @@
                         <div class="form-group">
                             <label for="firstP" class="control-label">{{ 'Primer Párrafo' }}</label>
                             <textarea class="form-control" name="firstP" type="text" id="firstP" placeholder="El texto que ingreses se vera reflejado en el primer párrafo del correo" required></textarea>
+                            {!! $errors->first('firstP', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="secondP" class="control-label">{{ 'Segundo Párrafo' }}</label>
                             <textarea class="form-control" name="secondP" type="text" id="secondP" placeholder="El texto que ingreses se vera reflejado en el segundo párrafo del correo" required></textarea>
+                            {!! $errors->first('secondP', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="title" class="control-label">{{ 'Titulo' }}</label>
                             <input class="form-control" name="title" type="text" id="title" placeholder="Se vera reflejado en la parte superior del correo" required>
+                            {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
 
@@ -49,6 +52,7 @@
                         <div class="form-group">
                             <label for="imageLink" class="control-label">{{ 'Vinculo a Imagen (de campaña)' }}</label>
                             <input class="form-control" name="imageLink" type="text" id="imageLink" placeholder="Ingresa el link de la imagen referente a la campaña" required>
+                            {!! $errors->first('imageLink', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -62,6 +66,7 @@
                                         <option value="https://crm-track.com/guest/campaigns/quiz/{{$campaign->id}}">{{$campaign->name}}</option>
                                     @endforeach
                                 </select>
+                                {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -76,6 +81,7 @@
                                         <option value="{{ URL::to('/') }}/uploads/catalogue/{{$catalogue->file}}">{{$catalogue->name}}</option>
                                     @endforeach
                                 </select>
+                                {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -84,6 +90,7 @@
                             <label for="emails" class="control-label">{{ 'Enviar a correos (pegalos):' }}</label>
                             <textarea class="form-control" name="emails" type="text" id="emails" style="padding-bottom: 10% !important;" placeholder="Asegurate de separar un correo de otro por medio de una coma con un espacio, de lo contrario habrá un error, ej: ejemplo1@gmail.com, ejemplo2@gmail.com" required></textarea>
                         </div>
+                        {!! $errors->first('emails', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
             </div>

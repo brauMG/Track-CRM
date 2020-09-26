@@ -14,6 +14,10 @@ use Spatie\Permission\Models\Role;
 
 class AdminsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -75,7 +79,8 @@ class AdminsController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif',
-            'company_id' => 'required'
+            'company_id' => 'required',
+            'phone' => 'numeric'
         ]);
 
         $requestData = $request->except(['is_profile', '_token']);
