@@ -259,7 +259,7 @@ use Illuminate\Support\Facades\URL;
 
             <li>
                 <a class="side-font sidebar-margin-elements" target="_blank" href="{{ URL::to('/') }}/files/track-guide.pdf">
-                <i class="fa fa-file-excel-o"></i> <span>Manual de Usuario</span>
+                <i class="fa fa-file-pdf-o"></i> <span>Manual de Usuario</span>
                 </a>
             </li>
 
