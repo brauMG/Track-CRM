@@ -1,3 +1,7 @@
+<?php
+use App\User;
+use Illuminate\Support\Facades\URL;
+?>
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -252,6 +256,12 @@
                 </ul>
             </li>
             @endif
+
+            <li>
+                <a class="side-font sidebar-margin-elements" target="_blank" href="{{ URL::to('/') }}/files/track-guide.pdf">
+                <i class="fa fa-file-excel-o"></i> <span>Manual de Usuario</span>
+                </a>
+            </li>
 
             <li>
                 <a href="https://dashboard.tawk.to/login" target="_blank">

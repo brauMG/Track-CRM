@@ -70,14 +70,14 @@
                             @if(!isset($contact->emails) || count($contact->emails) == 0)
                                 <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-10">
-                                        <input type="text" name="emails[]" class="form-control" value="" />
+                                        <input type="email" name="emails[]" class="form-control" value="" />
                                     </div>
                                 </div>
                             @else
                                 @foreach($contact->emails as $email)
                                     <div class="row" style="margin-top: 5px;">
                                         <div class="col-md-10">
-                                            <input type="text" name="emails[]" class="form-control" value="{{ $email->email }}" />
+                                            <input type="email" name="emails[]" class="form-control" value="{{ $email->email }}" />
                                         </div>
                                     </div>
                                 @endforeach
@@ -94,14 +94,14 @@
                             @if(!isset($contact->phones) || count($contact->phones) == 0)
                                 <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-10">
-                                        <input type="text" name="phones[]" class="form-control" value="" />
+                                        <input type="number" name="phones[]" class="form-control" value="" />
                                     </div>
                                 </div>
                             @else
                                 @foreach($contact->phones as $phone)
                                     <div class="row" style="margin-top: 5px;">
                                         <div class="col-md-10">
-                                            <input type="text" name="phones[]" class="form-control" value="{{ $phone->phone }}" />
+                                            <input type="number" name="phones[]" class="form-control" value="{{ $phone->phone }}" />
                                         </div>
                                     </div>
                                 @endforeach

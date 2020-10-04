@@ -51,7 +51,6 @@
                                         <div class="form-group">
                                             <div class="input-group mb-2">
                                                 <select type="text" class="form-control" id="campaign" name="campaign">
-                                                    <option selected value="{{null}}">Ninguna</option>
                                                     @foreach($campaigns as $campaign)
                                                         <option value="{{$campaign->id}}">{{$campaign->name}}</option>
                                                     @endforeach

@@ -57,9 +57,9 @@
                                         <tbody>
                                         @foreach($inventory as $item)
                                             <tr>
-                                                <td class="td td-center" style="vertical-align: middle">{{ $item->id }}</td>
-                                                <td class="td td-center" style="text-align: center">
-                                                    <img src="{{ url('uploads/inventory/' . $item->image) }}" width="100" height="100" />
+                                                <td class="td td-center">{{ $item->id }}</td>
+                                                <td class="td td-center">
+                                                    <img src="{{ url('uploads/inventory/' . $item->image) }}" width="200" height="100" />
                                                 </td>
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->name }}</td>
                                                 <td class="td td-center" style="vertical-align: middle">{{ $item->description }}</td>

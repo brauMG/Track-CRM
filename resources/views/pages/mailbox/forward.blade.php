@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app-mail')
 
 @section('title', ' | Bandeja | Mensaje de seguimiento')
 
@@ -6,7 +6,7 @@
 
     <section class="content-header">
         <h1>
-            Bandeja
+            Bandeja de Correos
             @if($unreadMessages)
                 <small>{{$unreadMessages}} nuevo mensaje</small>
             @endif

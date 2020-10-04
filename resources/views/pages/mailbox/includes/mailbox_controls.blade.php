@@ -1,13 +1,13 @@
 <div class="mailbox-controls">
 
     <!-- Check all button -->
-    @if(Request::segment(3) != 'Trash')
+    @if(Request::segment(3) != 'Papelera')
         <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
         </button>
     @endif
     <div class="btn-group">
 
-        @if(Request::segment(3)==''||Request::segment(3)=='Inbox')
+        @if(Request::segment(3)==''||Request::segment(3)=='Bandeja')
             @if(user_can("toggle_important_email"))
                 <button type="button" class="btn btn-default btn-sm mailbox-star-all" title="toggle important state" style="display: {{user_can("toggle_important_email")?'inline':'none'}}"><i class="fa fa-star"></i></button>
             @endif
@@ -24,7 +24,7 @@
                 <button type="button" class="btn btn-default btn-sm mailbox-forward" title="forward" style="display: {{user_can("forward_email")?'inline':'none'}}"><i class="fa fa-mail-forward"></i></button>
             @endif
 
-        @elseif(Request::segment(3) == 'Sent')
+        @elseif(Request::segment(3) == 'Enviados')
             @if(user_can("toggle_important_email"))
                 <button type="button" class="btn btn-default btn-sm mailbox-star-all" title="toggle important state" style="display: {{user_can("toggle_important_email")?'inline':'none'}}"><i class="fa fa-star"></i></button>
             @endif
@@ -36,7 +36,7 @@
             @if(user_can("forward_email"))
                 <button type="button" class="btn btn-default btn-sm mailbox-forward" title="forward" style="display: {{user_can("forward_email")?'inline':'none'}}"><i class="fa fa-mail-forward"></i></button>
             @endif
-        @elseif(Request::segment(3) == 'Drafts')
+        @elseif(Request::segment(3) == 'Borradores')
             @if(user_can("toggle_important_email"))
                 <button type="button" class="btn btn-default btn-sm mailbox-star-all" title="toggle important state" style="display: {{user_can("toggle_important_email")?'inline':'none'}}"><i class="fa fa-star"></i></button>
             @endif

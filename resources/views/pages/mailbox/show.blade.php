@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app-mail')
 
 @section('title', ' | Bandeja | Mostrar Correo')
 
@@ -6,7 +6,7 @@
 
     <section class="content-header">
         <h1>
-            Mostrar Correo
+            Bandeja de Correos
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> Tablero</a></li>

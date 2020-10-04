@@ -408,7 +408,8 @@ class ContactsController extends Controller
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
-            'campaign' => 'required'
+            'campaign' => 'required',
+            'emails' => 'required|email'
         ]);
     }
 
