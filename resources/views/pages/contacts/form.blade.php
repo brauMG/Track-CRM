@@ -70,14 +70,16 @@
                             @if(!isset($contact->emails) || count($contact->emails) == 0)
                                 <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-10">
-                                        <input type="email" name="emails[]" class="form-control" value="" />
+                                        <input type="email" name="emails[]" class="form-control {{ $errors->has('emails') ? 'has-error' : ''}}" value="" />
+                                        {!! $errors->first('emails', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>
                             @else
                                 @foreach($contact->emails as $email)
                                     <div class="row" style="margin-top: 5px;">
                                         <div class="col-md-10">
-                                            <input type="email" name="emails[]" class="form-control" value="{{ $email->email }}" />
+                                            <input type="email" name="emails[]" class="form-control {{ $errors->has('emails') ? 'has-error' : ''}}" value="{{ $email->email }}" />
+                                            {!! $errors->first('emails', '<p class="help-block">:message</p>') !!}
                                         </div>
                                     </div>
                                 @endforeach
@@ -94,14 +96,17 @@
                             @if(!isset($contact->phones) || count($contact->phones) == 0)
                                 <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-10">
-                                        <input type="number" name="phones[]" class="form-control" value="" />
+                                        <input type="number" name="phones[]" class="form-control {{ $errors->has('phones') ? 'has-error' : ''}}" value="" />
+                                        {!! $errors->first('phones', '<p class="help-block">:message</p>') !!}
+
                                     </div>
                                 </div>
                             @else
                                 @foreach($contact->phones as $phone)
                                     <div class="row" style="margin-top: 5px;">
                                         <div class="col-md-10">
-                                            <input type="number" name="phones[]" class="form-control" value="{{ $phone->phone }}" />
+                                            <input type="number" name="phones[]" class="form-control {{ $errors->has('phones') ? 'has-error' : ''}}" value="{{ $phone->phone }}" />
+                                            {!! $errors->first('phones', '<p class="help-block">:message</p>') !!}
                                         </div>
                                     </div>
                                 @endforeach
