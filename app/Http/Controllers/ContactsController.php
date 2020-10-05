@@ -27,7 +27,7 @@ class ContactsController extends Controller
 
     public function __construct(MailerFactory $mailer)
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'verified']);
 
         $this->mailer = $mailer;
     }
