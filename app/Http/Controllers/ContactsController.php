@@ -116,11 +116,11 @@ class ContactsController extends Controller
 
         $requestData = $request->all();
 
-        $emails = $requestData['emails'];
+        $email = $requestData['email'];
 
         $requestData['company_id'] = Auth::user()->company_id;
 
-        $phones = $request['phones'];
+        $phone = $request['phone'];
 
         unset($requestData['emails'], $requestData['phones']);
 
@@ -147,28 +147,20 @@ class ContactsController extends Controller
             'contacts_reached' => $reached
         ]);
 
-        $emails = array_filter($emails, function ($value) {
-            return !empty($value);
-        });
-
-        $phones = array_filter($phones, function ($value) {
-            return !empty($value);
-        });
-
-        if (count($phones) == 0){
-            $phones[] = 'sin asignar';
+        if (count($phone) == 0){
+            $phone = 'sin asignar';
         }
 
-        if (count($emails) == 0){
-            $emails[] = 'sin asignar';
+        if (count($email) == 0){
+            $email = 'sin asignar';
         }
 
         // insert emails & phones
         if($contact && $contact->id) {
 
-            $this->insertEmails($emails, $contact->id);
+            $this->insertEmails($email, $contact->id);
 
-            $this->insertPhones($phones, $contact->id);
+            $this->insertPhones($phone, $contact->id);
 
             if(isset($documents)) {
 
@@ -243,26 +235,18 @@ class ContactsController extends Controller
 
         $requestData = $request->all();
 
-        $emails = $requestData['emails'];
+        $email = $requestData['email'];
 
-        $phones = $request['phones'];
+        $phone = $request['phone'];
 
-        unset($requestData['emails'], $requestData['phones']);
+        unset($requestData['email'], $requestData['phone']);
 
-        $emails = array_filter($emails, function ($value) {
-            return !empty($value);
-        });
-
-        $phones = array_filter($phones, function ($value) {
-            return !empty($value);
-        });
-
-        if (count($phones) == 0){
-            $phones[] = 'sin asignar';
+        if (count($phone) == null){
+            $phone = 'sin asignar';
         }
 
-        if (count($emails) == 0){
-            $emails[] = 'sin asignar';
+        if (count($email) == null){
+            $email = 'sin asignar';
         }
 
         if(isset($requestData['documents'])) {
@@ -290,19 +274,19 @@ class ContactsController extends Controller
         // delete emails if exist
         ContactEmail::where('contact_id', $id)->delete();
 
-        if($emails) {
+        if($email) {
 
             // insert
-            $this->insertEmails($emails, $id);
+            $this->insertEmails($email, $id);
         }
 
         // delete phones if exist
         ContactPhone::where('contact_id', $id)->delete();
 
-        if($phones) {
+        if($phone) {
 
             // insert
-            $this->insertPhones($phones, $id);
+            $this->insertPhones($phone, $id);
         }
 
         // delete documents if exist
@@ -409,7 +393,7 @@ class ContactsController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'campaign' => 'required',
-            'emails' => 'required|email'
+            'email' => 'required|email'
         ]);
     }
 
@@ -418,13 +402,11 @@ class ContactsController extends Controller
      * insert emails
      *
      *
-     * @param $emails
+     * @param $email
      * @param $contact_id
      */
-    protected function insertEmails($emails, $contact_id)
+    protected function insertEmails($email, $contact_id)
     {
-        foreach ($emails as $email) {
-
             $contactEmail = new ContactEmail();
 
             $contactEmail->email = $email;
@@ -432,7 +414,6 @@ class ContactsController extends Controller
             $contactEmail->contact_id = $contact_id;
 
             $contactEmail->save();
-        }
     }
 
 
@@ -443,9 +424,8 @@ class ContactsController extends Controller
      * @param $phones
      * @param $contact_id
      */
-    protected function insertPhones($phones, $contact_id)
+    protected function insertPhones($phone, $contact_id)
     {
-        foreach ($phones as $phone) {
 
             $contactPhone = new ContactPhone();
 
@@ -454,7 +434,6 @@ class ContactsController extends Controller
             $contactPhone->contact_id = $contact_id;
 
             $contactPhone->save();
-        }
     }
 
 

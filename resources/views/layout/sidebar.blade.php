@@ -257,11 +257,19 @@ use Illuminate\Support\Facades\URL;
             </li>
             @endif
 
+            @if(\Illuminate\Support\Facades\Auth::user()->is_super_admin)
             <li>
                 <a class="side-font sidebar-margin-elements" target="_blank" href="{{ URL::to('/') }}/files/track-guide.pdf">
-                <i class="fa fa-file-pdf-o"></i> <span>Manual de Usuario</span>
+                <i class="fa fa-file-pdf-o"></i> <span>Manual de Super Admin</span>
                 </a>
             </li>
+            @else
+                <li>
+                    <a class="side-font sidebar-margin-elements" target="_blank" href="{{ URL::to('/') }}/files/track-guide.pdf">
+                        <i class="fa fa-file-pdf-o"></i> <span>Manual de Usuario</span>
+                    </a>
+                </li>
+            @endif
 
             <li>
                 <a href="https://dashboard.tawk.to/login" target="_blank">
