@@ -265,7 +265,7 @@ use Illuminate\Support\Facades\URL;
             </li>
             @else
                 <li>
-                    <a class="side-font sidebar-margin-elements" target="_blank" href="{{ URL::to('/') }}/files/track-guide.pdf">
+                    <a class="side-font sidebar-margin-elements" target="_blank" href="{{ URL::to('/') }}/files/userGuide.pdf">
                         <i class="fa fa-file-pdf-o"></i> <span>Manual de Usuario</span>
                     </a>
                 </li>
