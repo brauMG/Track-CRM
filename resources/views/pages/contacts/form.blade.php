@@ -67,19 +67,19 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div id="emails-wrapper">
-                            @if(!isset($contact->emails) || count($contact->emails) == 0)
+                            @if(!isset($contact->emails))
                                 <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-10">
-                                        <input type="email" name="emails[]" class="form-control {{ $errors->has('emails') ? 'has-error' : ''}}" value="" />
-                                        {!! $errors->first('emails', '<p class="help-block">:message</p>') !!}
+                                        <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'has-error' : ''}}" value="" />
+                                        {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>
                             @else
                                 @foreach($contact->emails as $email)
                                     <div class="row" style="margin-top: 5px;">
                                         <div class="col-md-10">
-                                            <input type="email" name="emails[]" class="form-control {{ $errors->has('emails') ? 'has-error' : ''}}" value="{{ $email->email }}" />
-                                            {!! $errors->first('emails', '<p class="help-block">:message</p>') !!}
+                                            <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'has-error' : ''}}" value="{{ $email->email }}" />
+                                            {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                                         </div>
                                     </div>
                                 @endforeach
@@ -93,20 +93,19 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div id="phones-wrapper">
-                            @if(!isset($contact->phones) || count($contact->phones) == 0)
+                            @if(!isset($contact->phones))
                                 <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-10">
-                                        <input type="number" name="phones[]" class="form-control {{ $errors->has('phones') ? 'has-error' : ''}}" value="" />
-                                        {!! $errors->first('phones', '<p class="help-block">:message</p>') !!}
-
+                                        <input type="number" name="phone" class="form-control {{ $errors->has('phone') ? 'has-error' : ''}}" value="" />
+                                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                                     </div>
                                 </div>
                             @else
                                 @foreach($contact->phones as $phone)
                                     <div class="row" style="margin-top: 5px;">
                                         <div class="col-md-10">
-                                            <input type="number" name="phones[]" class="form-control {{ $errors->has('phones') ? 'has-error' : ''}}" value="{{ $phone->phone }}" />
-                                            {!! $errors->first('phones', '<p class="help-block">:message</p>') !!}
+                                            <input type="number" name="phone" class="form-control {{ $errors->has('phone') ? 'has-error' : ''}}" value="{{ $phone->phone }}" />
+                                            {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                                         </div>
                                     </div>
                                 @endforeach

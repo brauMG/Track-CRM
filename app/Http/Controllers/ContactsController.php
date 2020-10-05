@@ -27,7 +27,7 @@ class ContactsController extends Controller
 
     public function __construct(MailerFactory $mailer)
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth']);
 
         $this->mailer = $mailer;
     }
@@ -122,7 +122,7 @@ class ContactsController extends Controller
 
         $phone = $request['phone'];
 
-        unset($requestData['emails'], $requestData['phones']);
+        unset($requestData['email'], $requestData['phone']);
 
         if(isset($requestData['documents'])) {
 
@@ -147,11 +147,11 @@ class ContactsController extends Controller
             'contacts_reached' => $reached
         ]);
 
-        if (count($phone) == 0){
+        if ($phone == null){
             $phone = 'sin asignar';
         }
 
-        if (count($email) == 0){
+        if ($email == null){
             $email = 'sin asignar';
         }
 
@@ -241,11 +241,11 @@ class ContactsController extends Controller
 
         unset($requestData['email'], $requestData['phone']);
 
-        if (count($phone) == null){
+        if ($phone == null){
             $phone = 'sin asignar';
         }
 
-        if (count($email) == null){
+        if ($email == null){
             $email = 'sin asignar';
         }
 
@@ -421,7 +421,7 @@ class ContactsController extends Controller
      * insert phones
      *
      *
-     * @param $phones
+     * @param $phone
      * @param $contact_id
      */
     protected function insertPhones($phone, $contact_id)
